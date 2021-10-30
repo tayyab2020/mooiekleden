@@ -139,8 +139,12 @@
                                                         {{ core()->formatPrice($item->tax_amount, $order->order_currency_code) }}
                                                     </td>
 
-                                                    <td data-value="{{ __('shop::app.customer.account.order.view.grand-total') }}">
+                                                    {{--<td data-value="{{ __('shop::app.customer.account.order.view.grand-total') }}">
                                                         {{ core()->formatPrice($item->total + $item->tax_amount - $item->discount_amount, $order->order_currency_code) }}
+                                                    </td>--}}
+
+                                                    <td data-value="{{ __('shop::app.customer.account.order.view.grand-total') }}">
+                                                        {{ core()->formatPrice($item->total - $item->discount_amount, $order->order_currency_code) }}
                                                     </td>
                                                 </tr>
                                             @endforeach
