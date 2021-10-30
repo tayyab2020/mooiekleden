@@ -513,8 +513,8 @@ class Cart
         $cart->tax_total = Tax::getTaxTotal($cart, false);
         $cart->base_tax_total = Tax::getTaxTotal($cart, true);
 
-        $cart->tax_total = 0; //Lines added by me
-        $cart->base_tax_total = 0; //Lines added by me
+        $cart->sub_total = $cart->sub_total - $cart->tax_total; //Lines added by me
+        $cart->base_sub_total = $cart->base_sub_total - $cart->base_tax_total; //Lines added by me
 
         $cart->grand_total = $cart->sub_total + $cart->tax_total - $cart->discount_amount;
         $cart->base_grand_total = $cart->base_sub_total + $cart->base_tax_total - $cart->base_discount_amount;
@@ -598,8 +598,11 @@ class Cart
                 }
 
                 /* now assigning shipping prices for tax calculation */
-                $item->tax_amount = round((($item->total + $shippingPrice) * $rate->tax_rate) / 100, 4);
-                $item->base_tax_amount = round((($item->base_total + $shippingBasePrice) * $rate->tax_rate) / 100, 4);
+                $item->tax_amount = round($item->total - ($item->total + $shippingPrice) / ((100 + $rate->tax_rate)/100),4); //Lines added by me
+                $item->base_tax_amount = round($item->base_total - ($item->base_total + $shippingBasePrice) / ((100 + $rate->tax_rate)/100),4); //Lines added by me
+                /*$item->tax_amount = round((($item->total + $shippingPrice) * $rate->tax_rate) / 100, 4);
+                $item->base_tax_amount = round((($item->base_total + $shippingBasePrice) * $rate->tax_rate) / 100, 4);*/
+
             });
 
             $item->save();
