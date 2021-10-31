@@ -70,16 +70,12 @@
                     {{ subtotalText }}
                 </h5>
 
-                <!--<h5 class="col-6 text-right fw6 no-padding">
+                <h5 class="col-6 text-right fw6 no-padding">
                     {{
                         isTaxInclusive == '1'
                             ? cartInformation.base_grand_total
                             : cartInformation.base_sub_total
                     }}
-                </h5>-->
-
-                <h5 class="col-6 text-right fw6 no-padding">
-                    {{cartInformation.base_grand_total}}
                 </h5>
             </div>
 

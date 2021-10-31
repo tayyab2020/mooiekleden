@@ -44,12 +44,8 @@
                                 {{ __('velocity::app.checkout.qty') }}
                             </span>
 
-                            {{--<span class="col-2 fw6 fs16 text-right pr0">
-                                {{ __('velocity::app.checkout.subtotal') }}
-                            </span>--}}
-
                             <span class="col-2 fw6 fs16 text-right pr0">
-                                Eindtotaal
+                                {{ __('velocity::app.checkout.subtotal') }}
                             </span>
                         </div>
 
