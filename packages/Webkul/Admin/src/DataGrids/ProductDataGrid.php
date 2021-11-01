@@ -120,6 +120,24 @@ class ProductDataGrid extends DataGrid
         }
 
         /* query builder */
+        /*$queryBuilder = DB::table('product_flat')
+            ->leftJoin('products', 'product_flat.product_id', '=', 'products.id')
+            ->leftJoin('attribute_families', 'products.attribute_family_id', '=', 'attribute_families.id')
+            ->leftJoin('product_inventories', 'product_flat.product_id', '=', 'product_inventories.product_id')
+            ->select(
+                'product_flat.locale',
+                'product_flat.channel',
+                'product_flat.product_id',
+                'products.sku as product_sku',
+                'product_flat.product_number',
+                'product_flat.name as product_name',
+                'products.type as product_type',
+                'product_flat.status',
+                'product_flat.price',
+                'attribute_families.name as attribute_family',
+                DB::raw('SUM(' . DB::getTablePrefix() . 'product_inventories.qty) as quantity')
+            );*/
+
         $queryBuilder = DB::table('product_flat')
             ->leftJoin('products', 'product_flat.product_id', '=', 'products.id')
             ->leftJoin('attribute_families', 'products.attribute_family_id', '=', 'attribute_families.id')
@@ -140,6 +158,7 @@ class ProductDataGrid extends DataGrid
 
         $queryBuilder->groupBy('product_flat.product_id', 'product_flat.locale', 'product_flat.channel');
 
+        $queryBuilder->where('product_flat.parent_id', NULL);
         $queryBuilder->whereIn('product_flat.locale', $whereInLocales);
         $queryBuilder->whereIn('product_flat.channel', $whereInChannels);
 
