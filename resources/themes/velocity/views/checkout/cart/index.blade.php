@@ -49,7 +49,7 @@
                             </span>--}}
 
                             <span class="col-2 fw6 fs16 text-right pr0">
-                                Eindtotaal
+                                {{ __('shop::app.checkout.total.grand-total') }}
                             </span>
                         </div>
 

@@ -1,9 +1,24 @@
 <div class="order-summary fs16">
     <h3 class="fw6">{{ __('velocity::app.checkout.cart.cart-summary') }}</h3>
 
-    <div class="row">
+    {{--<div class="row">
         <span class="col-8">{{ __('velocity::app.checkout.sub-total') }}</span>
         <span class="col-4 text-right">{{ core()->currency($cart->base_sub_total) }}</span>
+    </div>--}}
+
+    <div class="row">
+        <span class="col-8">Amount ex. vat</span>
+
+        <?php $tax_am = 0; ?>
+
+        @foreach (Webkul\Tax\Helpers\Tax::getTaxRatesWithAmount($cart, true) as $taxRate => $baseTaxAmount )
+
+            <?php $tax_am = $baseTaxAmount + $tax_am; ?>
+
+        @endforeach
+
+        <span class="col-4 text-right">{{ core()->currency($cart->base_sub_total - $tax_am) }}</span>
+
     </div>
 
     @if ($cart->selected_shipping_rate)

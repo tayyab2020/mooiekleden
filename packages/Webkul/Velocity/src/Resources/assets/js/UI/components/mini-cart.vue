@@ -66,8 +66,12 @@
             </div>
 
             <div class="modal-footer">
-                <h5 class="col-6 text-left fw6">
+                <!--<h5 class="col-6 text-left fw6">
                     {{ subtotalText }}
+                </h5>-->
+
+                <h5 class="col-6 text-left fw6">
+                    Totaal
                 </h5>
 
                 <h5 class="col-6 text-right fw6 no-padding">
