@@ -36,3 +36,7 @@ mix
         processCssUrls: false
     })
     .version();
+
+if (mix.inProduction()) {
+    mix.version();
+}
