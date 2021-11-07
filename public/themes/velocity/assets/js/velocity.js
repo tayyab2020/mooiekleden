@@ -26356,9 +26356,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      class: "dropdown333 " + (_vm.cartItems.length > 0 ? "" : "disable-active")
-    },
+    { class: "dropdown " + (_vm.cartItems.length > 0 ? "" : "disable-active") },
     [
       _c("mini-cart-button", {
         attrs: { "item-count": _vm.cartItems.length, "cart-text": _vm.cartText }
