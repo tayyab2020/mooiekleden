@@ -34,8 +34,7 @@ mix
 
     .options({
         processCssUrls: false
-    })
-    .version();
+    });
 
 if (mix.inProduction()) {
     mix.version();
