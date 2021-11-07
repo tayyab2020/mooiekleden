@@ -13638,7 +13638,7 @@ $(function () {
    * Velocity JS path. Just make sure if you are renaming
    * file then update this path also for mobile.
    */
-  var velocityJSPath = 'themes/velocity/assets/js/velocity.js?v=1';
+  var velocityJSPath = 'themes/velocity/assets/js/velocity.js';
 
   if (Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["b" /* isMobile */])() && Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["d" /* removeTrailingSlash */])(baseUrl) === Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["d" /* removeTrailingSlash */])(window.location.href)) {
     /**
