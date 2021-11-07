@@ -4,7 +4,9 @@ require('laravel-mix-merge-manifest');
 
 let publicPath = '../../../public/themes/velocity/assets';
 
-publicPath = 'publishable/assets';
+if (mix.inProduction()) {
+    publicPath = 'publishable/assets';
+}
 
 mix.setPublicPath(publicPath).mergeManifest();
 mix.disableNotifications();
@@ -32,8 +34,7 @@ mix
 
     .options({
         processCssUrls: false
-    });
+    })
+    .version();
 
-if (mix.inProduction()) {
     mix.version();
-}
