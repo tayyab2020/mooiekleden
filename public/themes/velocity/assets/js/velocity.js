@@ -26357,7 +26357,7 @@ var render = function() {
   return _c(
     "div",
     {
-      class: "dropdown8 " + (_vm.cartItems.length > 0 ? "" : "disable-active")
+      class: "dropdown9 " + (_vm.cartItems.length > 0 ? "" : "disable-active")
     },
     [
       _c("mini-cart-button", {
