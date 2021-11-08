@@ -13603,6 +13603,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * Vue prototype.
  */
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.prototype.$http = __WEBPACK_IMPORTED_MODULE_1_axios___default.a;
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.productionTip = false;
 
 /**
  * Window assignation.
