@@ -1,5 +1,5 @@
 <template>
-    <div :class="`dropdown8 ${cartItems.length > 0 ? '' : 'disable-active'}`">
+    <div :class="`dropdown9 ${cartItems.length > 0 ? '' : 'disable-active'}`">
         <mini-cart-button
             :item-count="cartItems.length"
             :cart-text="cartText"
