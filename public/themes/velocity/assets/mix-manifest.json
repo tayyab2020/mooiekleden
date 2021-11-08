@@ -1,6 +1,6 @@
 {
-    "/js/velocity.js": "/js/velocity.js",
+    "/js/velocity-core.js": "/js/velocity-core.js",
     "/css/velocity-admin.css": "/css/velocity-admin.css",
     "/css/velocity.css": "/css/velocity.css",
-    "/js/velocity-core.js": "/js/velocity-core.js"
+    "/js/velocity.js": "/js/velocity.js"
 }
