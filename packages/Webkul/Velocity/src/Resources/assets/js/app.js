@@ -19,8 +19,6 @@ import tr from 'vee-validate/dist/locale/tr';
 /**
  * Vue plugins.
  */
- 
-Vue.config.productionTip = false;
 Vue.use(VueCarousel);
 Vue.use(BootstrapSass);
 Vue.use(VeeValidate, {

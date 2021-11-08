@@ -19,7 +19,6 @@ import {
  * Vue prototype.
  */
 Vue.prototype.$http = axios;
-Vue.config.productionTip = false;
 
 /**
  * Window assignation.
