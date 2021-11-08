@@ -13078,6 +13078,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /**
  * Vue plugins.
  */
+
+Vue.config.productionTip = false;
 Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue_carousel___default.a);
 Vue.use(BootstrapSass);
 Vue.use(__WEBPACK_IMPORTED_MODULE_1_vee_validate__["a" /* default */], {
@@ -26357,7 +26359,7 @@ var render = function() {
   return _c(
     "div",
     {
-      class: "dropdown10 " + (_vm.cartItems.length > 0 ? "" : "disable-active")
+      class: "dropdown12 " + (_vm.cartItems.length > 0 ? "" : "disable-active")
     },
     [
       _c("mini-cart-button", {
