@@ -63,3 +63,16 @@ export default {
     }
 };
 </script>
+
+<style>
+
+@media (min-width: 992px){
+
+    .banner-icon
+    {
+        height: 550px;
+    }
+
+}
+
+</style>

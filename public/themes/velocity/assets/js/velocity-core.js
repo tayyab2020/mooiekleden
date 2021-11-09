@@ -448,7 +448,9 @@ module.exports = g;
 
 
 /***/ }),
-/* 3 */
+/* 3 */,
+/* 4 */,
+/* 5 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -638,8 +640,6 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 4 */,
-/* 5 */,
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12927,7 +12927,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(5)))
 
 /***/ }),
 /* 10 */
@@ -13069,7 +13069,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 11 */
@@ -13638,7 +13638,7 @@ $(function () {
      * Velocity JS path. Just make sure if you are renaming
      * file then update this path also for mobile.
      */
-    var velocityJSPath = 'themes/velocity/assets/js/velocity.js?id=7';
+    var velocityJSPath = 'themes/velocity/assets/js/velocity.js?id=9';
 
     if (Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["b" /* isMobile */])() && Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["d" /* removeTrailingSlash */])(baseUrl) === Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["d" /* removeTrailingSlash */])(window.location.href)) {
         /**

@@ -19,6 +19,15 @@
 /* static */
 @import "static/material-icons";
 
+@media (min-width: 992px){
+
+    .advertisement-two-container1 img
+    {
+        height: 450px;
+    }
+
+}
+
 /* starting */
 * {
     margin: 0;
