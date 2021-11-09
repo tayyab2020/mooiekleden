@@ -13629,45 +13629,45 @@ window.showAlert = __WEBPACK_IMPORTED_MODULE_2__app_helpers__["e" /* showAlert *
  * Dynamic loading for mobile.
  */
 $(function () {
-  /**
-   * Base url.
-   */
-  var baseUrl = Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["a" /* getBaseUrl */])();
-
-  /**
-   * Velocity JS path. Just make sure if you are renaming
-   * file then update this path also for mobile.
-   */
-  var velocityJSPath = 'themes/velocity/assets/js/velocity.js';
-
-  if (Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["b" /* isMobile */])() && Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["d" /* removeTrailingSlash */])(baseUrl) === Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["d" /* removeTrailingSlash */])(window.location.href)) {
     /**
-     * Event for mobile to check the user interaction for the homepage. In mobile,
-     * if your viewport is having dynamic content then, feel free to override this.
-     * Else it is recommended to have some, static content in the viewport as the
-     * first impression to reduce LCP.
+     * Base url.
      */
-    document.addEventListener('touchstart', function dynamicScript() {
-      var _this = this;
+    var baseUrl = Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["a" /* getBaseUrl */])();
 
-      window.scrollTo(0, 0);
-
-      document.body.style.overflow = 'hidden';
-
-      Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["c" /* loadDynamicScript */])(baseUrl + '/' + velocityJSPath, function () {
-        window.scrollTo(0, 0);
-
-        document.body.style.overflow = '';
-
-        _this.removeEventListener('touchstart', dynamicScript);
-      });
-    }, false);
-  } else {
     /**
-     * Else leave it default as previous.
+     * Velocity JS path. Just make sure if you are renaming
+     * file then update this path also for mobile.
      */
-    Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["c" /* loadDynamicScript */])(baseUrl + '/' + velocityJSPath, function () {});
-  }
+    var velocityJSPath = 'themes/velocity/assets/js/velocity.js';
+
+    if (Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["b" /* isMobile */])() && Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["d" /* removeTrailingSlash */])(baseUrl) === Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["d" /* removeTrailingSlash */])(window.location.href)) {
+        /**
+         * Event for mobile to check the user interaction for the homepage. In mobile,
+         * if your viewport is having dynamic content then, feel free to override this.
+         * Else it is recommended to have some, static content in the viewport as the
+         * first impression to reduce LCP.
+         */
+        document.addEventListener('touchstart', function dynamicScript() {
+            var _this = this;
+
+            window.scrollTo(0, 0);
+
+            document.body.style.overflow = 'hidden';
+
+            Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["c" /* loadDynamicScript */])(baseUrl + '/' + velocityJSPath, function () {
+                window.scrollTo(0, 0);
+
+                document.body.style.overflow = '';
+
+                _this.removeEventListener('touchstart', dynamicScript);
+            });
+        }, false);
+    } else {
+        /**
+         * Else leave it default as previous.
+         */
+        Object(__WEBPACK_IMPORTED_MODULE_2__app_helpers__["c" /* loadDynamicScript */])(baseUrl + '/' + velocityJSPath, function () {});
+    }
 });
 
 /***/ }),
@@ -14504,7 +14504,7 @@ module.exports = {
 /* 36 */
 /***/ (function(module, exports) {
 
-module.exports = {"_from":"axios@^0.21.0","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21.0","name":"axios","escapedName":"axios","rawSpec":"^0.21.0","saveSpec":null,"fetchSpec":"^0.21.0"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21.0","_where":"C:\\xampp\\htdocs\\mooiekleden\\packages\\Webkul\\Velocity","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}
+module.exports = {"_from":"axios@^0.21.0","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21.0","name":"axios","escapedName":"axios","rawSpec":"^0.21.0","saveSpec":null,"fetchSpec":"^0.21.0"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21.0","_where":"C:\\xampp\\htdocs\\mooiekleden\\Packages\\Webkul\\Velocity","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}
 
 /***/ }),
 /* 37 */
