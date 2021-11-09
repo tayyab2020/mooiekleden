@@ -1,11 +1,11 @@
 <header class="sticky-header">
     <div class="row remove-padding-margin velocity-divide-page">
         <a class="left navbar-brand" href="{{ route('shop.home.index') }}" aria-label="Logo">
-            <img class="logo" src="{{ core()->getCurrentChannel()->logo_url ?? asset('themes/velocity/assets/images/logo-text.png') }}" alt="" />
+            <img style="width: 100%;" class="logo" src="{{ core()->getCurrentChannel()->logo_url ?? asset('themes/velocity/assets/images/logo-text.png') }}" alt="" />
         </a>
 
         <div class="right searchbar">
-            <div class="row">
+            <div style="margin: 0;" class="row">
                 <div class="col-lg-5 col-md-12">
                     @include('velocity::shop.layouts.particals.search-bar')
                 </div>
