@@ -12,9 +12,12 @@
 </div>
 
 <div class="content-list right">
-    <?php dd($slicedCategories); ?>
     <ul type="none" class="no-margin">
-        <li><a href="https://demo.bagisto.com/bagisto-2400adc515cd100e89f5e863d4d3043/women" target="_self">Demo Store</a></li>
+        @foreach(app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCategoryTree(core()->getCurrentChannel()->root_category_id) as $category)
+        
+            <li><a href="{{url('/'.$category->slug)}}" target="_self">{{$category->name}}</a></li>
+
+        @endforeach
     </ul>
     <!--<right-side-header :header-content="{{ json_encode(app('Webkul\Velocity\Repositories\ContentRepository')->getAllContents()) }}">
 
