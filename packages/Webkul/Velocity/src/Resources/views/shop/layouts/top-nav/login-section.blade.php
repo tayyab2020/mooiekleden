@@ -6,9 +6,11 @@
                 <i class="material-icons align-vertical-top">perm_identity</i>
 
                 <span class="text-center">
-                    @guest('customer')
+                    <!--@guest('customer')
                         {{ __('velocity::app.header.welcome-message', ['customer_name' => trans('velocity::app.header.guest')]) }}!
-                    @endguest
+                    @endguest-->
+
+                    Welkom!
 
                     @auth('customer')
                         {{ __('velocity::app.header.welcome-message', ['customer_name' => auth()->guard('customer')->user()->first_name]) }}
