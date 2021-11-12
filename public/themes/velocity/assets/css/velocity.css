@@ -6863,6 +6863,20 @@ body.rtl .payment-methods .pl40 {
   font-weight: 600;
 }
 
+.right .price .price-label {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.right .price .regular-price {
+  font-size: 20px;
+}
+
+.right .price .final-price {
+  font-size: 24px;
+  font-weight: 600;
+}
+
 @media (min-width: 992px) {
   .advertisement-two-container1 img {
     height: 450px;
