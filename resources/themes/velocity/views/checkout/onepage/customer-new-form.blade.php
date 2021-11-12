@@ -140,7 +140,7 @@
         </div>
 
 
-        <div :class="`col-12 form-field ${errors.has('address-form.shipping[state]') ? 'has-error' : ''}`">
+        <!--<div :class="`col-12 form-field ${errors.has('address-form.shipping[state]') ? 'has-error' : ''}`">
             <label for="shipping[state]" class="mandatory">
                 {{ __('shop::app.checkout.onepage.state') }}
             </label>
@@ -178,7 +178,7 @@
             </div>
 
             <span class="control-error" v-if="errors.has('address-form.shipping[state]')" v-text="errors.first('address-form.shipping[state]')"></span>
-        </div>
+        </div>-->
 
         <div :class="`col-12 form-field ${errors.has('address-form.shipping[postcode]') ? 'has-error' : ''}`">
             <label for="shipping[postcode]" class="mandatory">
@@ -392,7 +392,7 @@
             <span class="control-error" v-if="errors.has('address-form.billing[country]')" v-text="errors.first('address-form.billing[country]')"></span>
         </div>
 
-        <div :class="`col-12 form-field ${errors.has('address-form.billing[state]') ? 'has-error' : ''}`">
+        <!--<div :class="`col-12 form-field ${errors.has('address-form.billing[state]') ? 'has-error' : ''}`">
             <label for="billing[state]" class="mandatory">
                 {{ __('shop::app.checkout.onepage.state') }}
             </label>
@@ -429,7 +429,7 @@
             </div>
 
             <span class="control-error" v-if="errors.has('address-form.billing[state]')" v-text="errors.first('address-form.billing[state]')"></span>
-        </div>
+        </div>-->
 
         <div :class="`col-12 form-field ${errors.has('address-form.billing[postcode]') ? 'has-error' : ''}`">
             <label for="billing[postcode]" class="mandatory">

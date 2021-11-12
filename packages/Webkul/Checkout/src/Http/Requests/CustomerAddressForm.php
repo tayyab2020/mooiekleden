@@ -47,7 +47,7 @@ class CustomerAddressForm extends FormRequest
                 'billing.email'      => ['required'],
                 'billing.address1'   => ['required'],
                 'billing.city'       => ['required'],
-                'billing.state'      => ['required'],
+                /*'billing.state'      => ['required'],*/
                 'billing.postcode'   => ['required'],
                 'billing.phone'      => ['required'],
                 'billing.country'    => ['required'],
@@ -72,7 +72,7 @@ class CustomerAddressForm extends FormRequest
                     'shipping.email'      => ['required'],
                     'shipping.address1'   => ['required'],
                     'shipping.city'       => ['required'],
-                    'shipping.state'      => ['required'],
+                    /*'shipping.state'      => ['required'],*/
                     'shipping.postcode'   => ['required'],
                     'shipping.phone'      => ['required'],
                     'shipping.country'    => ['required'],

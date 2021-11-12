@@ -123,7 +123,7 @@
 
                                         @include ('shop::products.view.stock', ['product' => $product])
 
-                                        <!--<div class="col-12 price">
+                                        <div class="col-12 price">
                                             @include ('shop::products.price', ['product' => $product])
 
                                             @if (Webkul\Tax\Helpers\Tax::isTaxInclusive() && $product->getTypeInstance()->getTaxCategory())
@@ -155,7 +155,7 @@
                                                 'showCompare' => core()->getConfigData('general.content.shop.compare_option') == "1"
                                                                 ? true : false,
                                             ])
-                                        </div>-->
+                                        </div>
                                     </div>
 
                                     {!! view_render_event('bagisto.shop.products.view.short_description.before', ['product' => $product]) !!}
@@ -173,61 +173,17 @@
 
                                     {!! view_render_event('bagisto.shop.products.view.quantity.before', ['product' => $product]) !!}
 
+                                    @if ($product->getTypeInstance()->showQuantityBox())
+                                        <div>
+                                            <quantity-changer quantity-text="{{ __('shop::app.products.quantity') }}"></quantity-changer>
+                                        </div>
+                                    @else
+                                        <input type="hidden" name="quantity" value="1">
+                                    @endif
+
                                     {!! view_render_event('bagisto.shop.products.view.quantity.after', ['product' => $product]) !!}
 
                                     @include ('shop::products.view.configurable-options')
-
-                                    <div style="display: flex;">
-                                        
-                                        <div class="col-lg-4">
-                                        
-                                            @if ($product->getTypeInstance()->showQuantityBox())
-                                                <quantity-changer quantity-text="{{ __('shop::app.products.quantity') }}"></quantity-changer>
-                                            @else
-                                                <input type="hidden" name="quantity" value="1">
-                                            @endif
-
-                                        </div>
-
-                                        <div style="display: flex;flex-flow: wrap;" class="col-lg-8">
-
-                                            <div style="padding: 0;margin-bottom: 10px;" class="col-12 price">
-                                                @include ('shop::products.price', ['product' => $product])
-
-                                                @if (Webkul\Tax\Helpers\Tax::isTaxInclusive() && $product->getTypeInstance()->getTaxCategory())
-                                                    <span>
-                                                        {{ __('velocity::app.products.tax-inclusive') }}
-                                                    </span>
-                                                @endif
-                                            </div>
-
-                                            @if (count($product->getTypeInstance()->getCustomerGroupPricingOffers()) > 0)
-                                                <div class="col-12">
-                                                    @foreach ($product->getTypeInstance()->getCustomerGroupPricingOffers() as $offers)
-                                                        {{ $offers }} </br>
-                                                    @endforeach
-                                                </div>
-                                            @endif
-
-                                            <div class="product-actions">
-                                                @if (core()->getConfigData('catalog.products.storefront.buy_now_button_display'))
-                                                    @include ('shop::products.buy-now', [
-                                                        'product' => $product,
-                                                    ])
-                                                @endif
-
-                                                @include ('shop::products.add-to-cart', [
-                                                    'form' => false,
-                                                    'product' => $product,
-                                                    'showCartIcon' => false,
-                                                    'showCompare' => core()->getConfigData('general.content.shop.compare_option') == "1"
-                                                                ? true : false,
-                                                ])
-                                            </div>
-
-                                        </div>
-
-                                    </div>
 
                                     @include ('shop::products.view.downloadable')
 

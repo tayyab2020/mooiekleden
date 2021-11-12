@@ -141,7 +141,7 @@
                     address: {
                         billing: {
                             address1: [''],
-
+                            country: 'NL',
                             use_for_shipping: true,
                         },
 
