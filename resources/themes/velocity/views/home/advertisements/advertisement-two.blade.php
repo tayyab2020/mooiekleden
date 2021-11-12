@@ -18,7 +18,7 @@
             $isRendered = true;
         @endphp
 
-        <div class="container-fluid advertisement-two-container">
+        <div class="container-fluid advertisement-two-container advertisement-two-container1">
             <div class="row">
                 @if ( isset($advertisementTwo[0]))
                     <a class="col-lg-9 col-md-12 no-padding">
@@ -43,7 +43,7 @@
 @endif
 
 @if (! $isRendered)
-    <div class="container-fluid advertisement-two-container">
+    <div class="container-fluid advertisement-two-container advertisement-two-container1">
         <div class="row">
             <a class="col-lg-9 col-md-12 no-padding">
                 <img
