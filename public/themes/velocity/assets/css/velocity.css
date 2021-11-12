@@ -6870,6 +6870,7 @@ body.rtl .payment-methods .pl40 {
 
 .right .price .regular-price {
   font-size: 20px;
+  font-weight: 500;
 }
 
 .right .price .final-price {
