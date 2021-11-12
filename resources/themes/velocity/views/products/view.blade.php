@@ -177,16 +177,6 @@
 
                                     @include ('shop::products.view.configurable-options')
 
-                                    @include ('shop::products.view.downloadable')
-
-                                    @include ('shop::products.view.grouped-products')
-
-                                    @include ('shop::products.view.bundle-options')
-
-                                    @include ('shop::products.view.attributes', [
-                                        'active' => true
-                                    ])
-
                                     <div style="display: flex;">
                                         
                                         <div class="col-lg-4">
@@ -238,6 +228,16 @@
                                         </div>
 
                                     </div>
+
+                                    @include ('shop::products.view.downloadable')
+
+                                    @include ('shop::products.view.grouped-products')
+
+                                    @include ('shop::products.view.bundle-options')
+
+                                    @include ('shop::products.view.attributes', [
+                                        'active' => true
+                                    ])
 
                                     {{-- product long description --}}
                                     @include ('shop::products.view.description')
