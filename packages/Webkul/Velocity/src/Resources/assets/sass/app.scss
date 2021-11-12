@@ -19,6 +19,12 @@
 /* static */
 @import "static/material-icons";
 
+.right .price span
+{
+    font-size: 20px;
+    font-weight: 600;
+}
+
 @media (min-width: 992px){
 
     .advertisement-two-container1 img
