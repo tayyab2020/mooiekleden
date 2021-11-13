@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div style="display: flex;position: relative;" class="col-7">
+        <div class="col-6">
             <div v-if="hamburger" class="nav-container scrollable">
                 <div class="wrapper" v-if="this.rootCategories">
                     <div class="greeting drawer-section fw6">
@@ -300,7 +300,7 @@
             <slot name="logo"></slot>
         </div>
 
-        <div class="right-vc-header col-5">
+        <div class="right-vc-header col-6">
             <slot name="top-header"></slot>
 
             <a class="unset cursor-pointer" @click="openSearchBar">
