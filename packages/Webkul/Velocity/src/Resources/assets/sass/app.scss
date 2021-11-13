@@ -52,6 +52,17 @@
 
 }
 
+@media only screen and (max-width: 992px)
+{
+    .category-page-wrapper .category-container .filters-container
+    {
+        position: absolute;
+        top: 0;
+        margin-top: 0;
+        display: none;
+    }
+}
+
 /* starting */
 * {
     margin: 0;
