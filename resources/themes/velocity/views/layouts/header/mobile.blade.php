@@ -152,8 +152,8 @@
     </template>
 
     <template v-slot:logo>
-        <a class="left" href="{{ route('shop.home.index') }}" aria-label="Logo">
-            <img class="logo" src="{{ core()->getCurrentChannel()->logo_url ?? asset('themes/velocity/assets/images/logo-text.png') }}" alt="" />
+        <a style="position: relative;width: 100%;display: flex;align-items: center;" class="left" href="{{ route('shop.home.index') }}" aria-label="Logo">
+            <img style="height: 80%;" class="logo" src="{{ core()->getCurrentChannel()->logo_url ?? asset('themes/velocity/assets/images/logo-text.png') }}" alt="" />
         </a>
     </template>
 
