@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div style="display: flex;" class="col-7">
+        <div style="display: none;" class="col-7">
             <div v-if="hamburger" class="nav-container scrollable">
                 <div class="wrapper" v-if="this.rootCategories">
                     <div class="greeting drawer-section fw6">
