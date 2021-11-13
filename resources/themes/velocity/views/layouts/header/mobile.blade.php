@@ -18,17 +18,17 @@
 
     {{-- this is default content if js is not loaded --}}
     <div class="row">
-        <div class="col-6">
+        <div style="display: flex;" class="col-7">
             <div class="hamburger-wrapper">
                 <i class="rango-toggle hamburger"></i>
             </div>
 
-            <a class="left" href="{{ route('shop.home.index') }}" aria-label="Logo">
-                <img class="logo" src="{{ core()->getCurrentChannel()->logo_url ?? asset('themes/velocity/assets/images/logo-text.png') }}" alt="" />
+            <a style="position: relative;width: 100%;display: flex;align-items: center;" class="left" href="{{ route('shop.home.index') }}" aria-label="Logo">
+                <img style="height: 80%;" class="logo" src="{{ core()->getCurrentChannel()->logo_url ?? asset('themes/velocity/assets/images/logo-text.png') }}" alt="" />
             </a>
         </div>
 
-        <div class="right-vc-header col-6">
+        <div class="right-vc-header col-5">
             <a href="{{ auth()->guard('customer')->check() ? route('velocity.customer.product.compare') : route('velocity.product.compare') }}" class="compare-btn unset">
                 <i class="material-icons">compare_arrows</i>
             </a>
