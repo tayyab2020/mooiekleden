@@ -1,4 +1,4 @@
-<div class="input-group">
+<div style="justify-content: flex-end;" class="input-group">
     <form
         method="GET"
         role="search"
