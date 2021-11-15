@@ -75,7 +75,7 @@
                                 :name="['super_attribute[' + attribute.id + ']']"
                                 :id="['attribute_' + attribute.id + '_option_' + option.id]"
                                 :data-vv-as="'&quot;' + attribute.label + '&quot;'"
-                                @change="configure(attribute, $event.target.value)"
+                                @change="configure(attribute, $event.target.value, option.label)"
                                 :checked="index == attribute.selectedIndex">
 
                             <span v-if="attribute.swatch_type == 'color'" :style="{ background: option.swatch_value }"></span>
@@ -129,7 +129,9 @@
                     },
 
                     methods: {
+                        
                         init: function () {
+
                             let config = @json($config);
 
                             let childAttributes = this.childAttributes,
@@ -159,16 +161,30 @@
                         },
 
                         initDefaultSelection: function() {
+                            
                             if (this.defaultVariant) {
-                                this.childAttributes.forEach((attribute) => {
-                                    let attributeValue = this.defaultVariant[attribute.code];
 
-                                    this.configure(attribute, attributeValue);
+                                this.childAttributes.forEach((attribute) => {
+
+                                    let attributeValue = this.defaultVariant[attribute.code];
+                                    let attributeLabel = this.defaultVariant['name']
+
+                                    this.configure(attribute, attributeValue, attributeLabel);
                                 });
                             }
                         },
 
-                        configure: function(attribute, value) {
+                        configure: function(attribute, value, label = null) {
+
+                            if(label == 'Custom Size' || label == 'Custom size')
+                            {
+                                $('.custom-measurements').show();
+                            }
+                            else
+                            {
+                                $('.custom-measurements').hide();
+                            }
+
                             this.simpleProduct = this.getSelectedProductId(attribute, value);
 
                             if (value) {
@@ -321,6 +337,8 @@
                                 priceLabelElement.style.display = 'none';
 
                                 priceElement.innerHTML = this.config.variant_prices[this.simpleProduct].final_price.formated_price;
+
+                                console.log(this.config.variant_prices[this.simpleProduct].final_price.price);
 
                                 if (regularPriceElement) {
                                     regularPriceElement.innerHTML = this.config.variant_prices[this.simpleProduct].regular_price.formated_price;

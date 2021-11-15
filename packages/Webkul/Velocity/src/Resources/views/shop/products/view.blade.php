@@ -177,6 +177,23 @@
 
                                     @include ('shop::products.view.configurable-options')
 
+                                    <div style="display: none;" class="custom-measurements">
+                                        <div style="margin-bottom: 15px;" class="row">
+                                            <div class="col-lg-6">
+                                                <div>
+                                                    <label for="" class="required">Width</label>
+                                                    <input type="number" min="1" name="custom_width" id="custom_width" class="control form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div>
+                                                    <label for="" class="required">Height</label>
+                                                    <input type="number" min="1" name="custom_height" id="custom_height" class="control form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div style="display: flex;">
                                             
                                         <div class="col-lg-4">
