@@ -257,7 +257,7 @@
 
                         configure: function(attribute, value, label = null) {
 
-                            if(label == 'Custom Size' || label == 'Custom size')
+                            if(label == 'Custom Size' || label == 'Maatwerk')
                             {
                                 $('.custom-measurements').show();
                             }
@@ -422,7 +422,7 @@
                                 
                                 priceLabelElement.style.display = 'none';
 
-                                if(this.simpleProductLabel == 'Custom Size' || this.simpleProductLabel == 'Custom size')
+                                if(this.simpleProductLabel == 'Custom Size' || this.simpleProductLabel == 'Maatwerk')
                                 {
                                     var width = $('#custom_width').val();
                                     var height = $('#custom_height').val();
@@ -463,7 +463,7 @@
                             } else {
                                 priceLabelElement.style.display = 'inline-block';
 
-                                if(this.simpleProductLabel == 'Custom Size' || this.simpleProductLabel == 'Custom size')
+                                if(this.simpleProductLabel == 'Custom Size' || this.simpleProductLabel == 'Maatwerk')
                                 {
                                     var width = $('#custom_width').val();
                                     var height = $('#custom_height').val();
