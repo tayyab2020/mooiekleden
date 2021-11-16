@@ -76,7 +76,8 @@
                                 :id="['attribute_' + attribute.id + '_option_' + option.id]"
                                 :data-vv-as="'&quot;' + attribute.label + '&quot;'"
                                 @change="configure(attribute, $event.target.value, option.label)"
-                                :checked="index == attribute.selectedIndex">
+                                :checked="index == attribute.selectedIndex"
+                                :data-label="option.label">
 
                             <span v-if="attribute.swatch_type == 'color'" :style="{ background: option.swatch_value }"></span>
 
@@ -98,6 +99,86 @@
         </script>
 
         <script type="text/javascript">
+
+        $(document).on('keypress', "#custom_width, #custom_height", function (e) {
+
+            e = e || window.event;
+            var charCode = (typeof e.which == "undefined") ? e.keyCode : e.which;
+            var val = String.fromCharCode(charCode);
+
+            if (!val.match(/^[0-9]*\,?[0-9]*$/))  // For characters validation
+            {
+                e.preventDefault();
+                return false;
+            }
+
+            if (e.which == 44) {
+                e.preventDefault();
+                return false;
+            }
+
+            var num = $(this).attr("maskedFormat").toString().split(',');
+            var regex = new RegExp("^\\d{0," + num[0] + "}(\\,\\d{0," + num[1] + "})?$");
+        
+            if (!regex.test(this.value)) {
+                this.value = this.value.substring(0, this.value.length - 1);
+            }
+
+        });
+
+        $(document).on('focusout', "#custom_width, #custom_height", function (e) {
+
+            if (!$(this).val()) {
+                $(this).val(0);
+            }
+
+        });
+
+        $(document).on('input', "#custom_width, #custom_height", function (e) {
+
+            var locale = "<?php echo app()->getLocale(); ?>";
+            var currency = "<?php echo core()->getCurrentCurrency()->symbol; ?>";
+            console.log(currency);
+            var id = $(this).attr('id');
+
+            if(id == 'custom_width')
+            {
+                var custom_width = $(this).val();
+                var custom_height = $('#custom_height').val();
+            }
+            else
+            {
+                var custom_width = $('#custom_width').val();
+                var custom_height = $(this).val();
+            }
+
+            if(!custom_width)
+            {
+                custom_width = 0;
+            }
+
+            if(!custom_height)
+            {
+                custom_height = 0;
+            }
+
+            var custom_base_price = $('#custom_base_price').val();
+
+            if(custom_base_price)
+            {
+                var final_price = (custom_width/100) * (custom_height/100) * custom_base_price;
+                final_price = parseFloat(final_price).toFixed(2);
+                $('#custom_final_price').val(final_price);
+                final_price = parseFloat(final_price).toLocaleString(locale);
+                var formated_price = currency + ' ' + final_price;
+                $('.product-price .final-price').text(formated_price);
+
+                $('#custom_base_price').val(custom_base_price);
+                $('#custom_formated_price').val(formated_price);
+            }
+            
+        });
+            
             (() => {
                 let galleryImages = @json($galleryImages);
 
@@ -186,6 +267,7 @@
                             }
 
                             this.simpleProduct = this.getSelectedProductId(attribute, value);
+                            this.simpleProductLabel = label;
 
                             if (value) {
                                 attribute.selectedIndex = this.getSelectedIndex(attribute, value);
@@ -321,6 +403,9 @@
                         },
 
                         reloadPrice: function () {
+
+                            var locale = this.config.locale;
+                            var currency = this.config.currency_symbol;
                             let selectedOptionCount = 0;
 
                             this.childAttributes.forEach(function(attribute) {
@@ -334,11 +419,41 @@
                             let regularPriceElement = document.querySelector('.regular-price');
 
                             if (this.childAttributes.length == selectedOptionCount) {
+                                
                                 priceLabelElement.style.display = 'none';
 
-                                priceElement.innerHTML = this.config.variant_prices[this.simpleProduct].final_price.formated_price;
+                                if(this.simpleProductLabel == 'Custom Size' || this.simpleProductLabel == 'Custom size')
+                                {
+                                    var width = $('#custom_width').val();
+                                    var height = $('#custom_height').val();
 
-                                console.log(this.config.variant_prices[this.simpleProduct].final_price.price);
+                                    if(!width)
+                                    {
+                                        width = 0;
+                                    }
+
+                                    if(!height)
+                                    {
+                                        height = 0;
+                                    }
+
+                                    var custom_base_price = this.config.variant_prices[this.simpleProduct].final_price.price;
+                                    var final_price = (width/100) * (height/100) * custom_base_price;
+                                    $('#custom_final_price').val(final_price);
+                                    final_price = parseFloat(final_price).toLocaleString(locale);
+                                    priceElement.innerHTML = currency + ' ' + final_price;
+
+                                    $('#custom_base_price').val(custom_base_price);
+                                    $('#custom_formated_price').val(priceElement.innerHTML);
+                                    
+                                }
+                                else
+                                {
+                                    priceElement.innerHTML = this.config.variant_prices[this.simpleProduct].final_price.formated_price;
+                                    $('#custom_base_price').val('');
+                                    $('#custom_formated_price').val('');
+                                    $('#custom_final_price').val('');
+                                }
 
                                 if (regularPriceElement) {
                                     regularPriceElement.innerHTML = this.config.variant_prices[this.simpleProduct].regular_price.formated_price;
@@ -348,7 +463,38 @@
                             } else {
                                 priceLabelElement.style.display = 'inline-block';
 
-                                priceElement.innerHTML = this.config.regular_price.formated_price;
+                                if(this.simpleProductLabel == 'Custom Size' || this.simpleProductLabel == 'Custom size')
+                                {
+                                    var width = $('#custom_width').val();
+                                    var height = $('#custom_height').val();
+
+                                    if(!width)
+                                    {
+                                        width = 0;
+                                    }
+
+                                    if(!height)
+                                    {
+                                        height = 0;
+                                    }
+
+                                    var custom_base_price = this.config.regular_price.price;
+                                    var final_price = (width/100) * (height/100) * custom_base_price;
+                                    $('#custom_final_price').val(final_price);
+                                    final_price = parseFloat(final_price).toLocaleString(locale);
+                                    priceElement.innerHTML = currency + ' ' + final_price;
+
+                                    $('#custom_base_price').val(custom_base_price);
+                                    $('#custom_formated_price').val(priceElement.innerHTML);
+
+                                }
+                                else
+                                {
+                                    priceElement.innerHTML = this.config.regular_price.formated_price;
+                                    $('#custom_base_price').val('');
+                                    $('#custom_formated_price').val('');
+                                    $('#custom_final_price').val('');
+                                }
 
                                 eventBus.$emit('configurable-variant-selected-event', 0)
                             }

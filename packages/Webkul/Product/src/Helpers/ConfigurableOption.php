@@ -47,6 +47,8 @@ class ConfigurableOption extends AbstractProduct
             'variant_images' => $this->getVariantImages($product),
             'variant_videos' => $this->getVariantVideos($product),
             'chooseText'     => trans('shop::app.products.choose-option'),
+            'locale' => app()->getLocale(),
+            'currency_symbol' => core()->getCurrentCurrency()->symbol
         ];
 
         return array_merge($config, $product->getTypeInstance()->getProductPrices());

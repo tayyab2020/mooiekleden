@@ -177,18 +177,22 @@
 
                                     @include ('shop::products.view.configurable-options')
 
+                                    <input type="hidden" name="custom_base_price" id="custom_base_price">
+                                    <input type="hidden" name="custom_formated_price" id="custom_formated_price">
+                                    <input type="hidden" name="custom_final_price" id="custom_final_price">
+
                                     <div style="display: none;" class="custom-measurements">
                                         <div style="margin-bottom: 15px;" class="row">
                                             <div class="col-lg-6">
                                                 <div>
                                                     <label for="" class="required">Width</label>
-                                                    <input type="number" min="1" name="custom_width" id="custom_width" class="control form-control">
+                                                    <input type="text" maskedformat="9,1" min="1" name="custom_width" id="custom_width" class="control form-control">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div>
                                                     <label for="" class="required">Height</label>
-                                                    <input type="number" min="1" name="custom_height" id="custom_height" class="control form-control">
+                                                    <input type="text" maskedformat="9,1" min="1" name="custom_height" id="custom_height" class="control form-control">
                                                 </div>
                                             </div>
                                         </div>
