@@ -469,6 +469,8 @@ class Configurable extends AbstractType
             AND {$tablePrefix}product_flat.special_price_to IS NOT NULL , IF( NOW( ) >= {$tablePrefix}product_flat.special_price_from
             AND NOW( ) <= {$tablePrefix}product_flat.special_price_to, IF( {$tablePrefix}product_flat.special_price IS NULL OR {$tablePrefix}product_flat.special_price = 0 , {$tablePrefix}product_flat.price, LEAST( {$tablePrefix}product_flat.special_price, {$tablePrefix}product_flat.price ) ) , {$tablePrefix}product_flat.price ) , IF( {$tablePrefix}product_flat.special_price_from IS NULL , IF( {$tablePrefix}product_flat.special_price_to IS NULL , IF( {$tablePrefix}product_flat.special_price IS NULL OR {$tablePrefix}product_flat.special_price = 0 , {$tablePrefix}product_flat.price, LEAST( {$tablePrefix}product_flat.special_price, {$tablePrefix}product_flat.price ) ) , IF( NOW( ) <= {$tablePrefix}product_flat.special_price_to, IF( {$tablePrefix}product_flat.special_price IS NULL OR {$tablePrefix}product_flat.special_price = 0 , {$tablePrefix}product_flat.price, LEAST( {$tablePrefix}product_flat.special_price, {$tablePrefix}product_flat.price ) ) , {$tablePrefix}product_flat.price ) ) , IF( {$tablePrefix}product_flat.special_price_to IS NULL , IF( NOW( ) >= {$tablePrefix}product_flat.special_price_from, IF( {$tablePrefix}product_flat.special_price IS NULL OR {$tablePrefix}product_flat.special_price = 0 , {$tablePrefix}product_flat.price, LEAST( {$tablePrefix}product_flat.special_price, {$tablePrefix}product_flat.price ) ) , {$tablePrefix}product_flat.price ) , {$tablePrefix}product_flat.price ) ) ) AS min_price")
             ->where('product_flat.channel', core()->getCurrentChannelCode())
+            ->where('product_flat.size_label','!=', 'Custom Size')
+            ->where('product_flat.size_label','!=', 'Maatwerk')
             ->get();
 
         foreach ($result as $price) {
@@ -488,16 +490,21 @@ class Configurable extends AbstractType
      * @return float
      */
     public function getOfferPrice() {
-        $rulePrices = $customerGroupPrices = [];
+        $rulePrices = $customerGroupPrices = [];        
 
         foreach ($this->product->variants as $variant) {
-            $rulePrice = app('Webkul\CatalogRule\Helpers\CatalogRuleProductPrice')->getRulePrice($variant);
 
-            if ($rulePrice) {
-                $rulePrices[] = $rulePrice->price;
+            if($variant->product_flats[0]->size_label != 'Custom Size' && $variant->product_flats[0]->size_label != 'Maatwerk')
+            {
+                $rulePrice = app('Webkul\CatalogRule\Helpers\CatalogRuleProductPrice')->getRulePrice($variant);
+
+                if ($rulePrice) {
+                    $rulePrices[] = $rulePrice->price;
+                }
+
+                $customerGroupPrices[] = $this->getCustomerGroupPrice($variant, 1);
             }
-
-            $customerGroupPrices[] = $this->getCustomerGroupPrice($variant, 1);
+        
         }
 
         if ($rulePrices || $customerGroupPrices) {
@@ -569,6 +576,7 @@ class Configurable extends AbstractType
      */
     public function getPriceHtml()
     {
+
         if ($this->haveOffer()) {
             return '<div class="sticker sale">' . trans('shop::app.products.sale') . '</div>'
             . '<span class="price-label">' . trans('shop::app.products.price-label') . '</span>'

@@ -185,13 +185,13 @@
                                         <div style="margin-bottom: 15px;" class="row">
                                             <div class="col-lg-6">
                                                 <div>
-                                                    <label for="" class="required">Width</label>
+                                                    <label for="" class="required">Lengte (cm)</label>
                                                     <input type="text" maskedformat="9,1" min="1" name="custom_width" id="custom_width" class="control form-control">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div>
-                                                    <label for="" class="required">Height</label>
+                                                    <label for="" class="required">Breedte (cm)</label>
                                                     <input type="text" maskedformat="9,1" min="1" name="custom_height" id="custom_height" class="control form-control">
                                                 </div>
                                             </div>

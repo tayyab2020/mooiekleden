@@ -38,17 +38,20 @@ class ConfigurableOption extends AbstractProduct
      */
     public function getConfigurationConfig($product)
     {
+        
         $options = $this->getOptions($product, $this->getAllowedProducts($product));
 
         $config = [
             'attributes'     => $this->getAttributesData($product, $options),
+            'max_width'      => $product->max_width1,
+            'min_width'      => $product->min_width1,
+            'max_height'     => $product->max_height1,
+            'min_height'     => $product->min_height1,
             'index'          => isset($options['index']) ? $options['index'] : [],
             'variant_prices' => $this->getVariantPrices($product),
             'variant_images' => $this->getVariantImages($product),
             'variant_videos' => $this->getVariantVideos($product),
             'chooseText'     => trans('shop::app.products.choose-option'),
-            'locale' => app()->getLocale(),
-            'currency_symbol' => core()->getCurrentCurrency()->symbol
         ];
 
         return array_merge($config, $product->getTypeInstance()->getProductPrices());

@@ -12,6 +12,12 @@
 
         <product-options></product-options>
 
+        <input type="hidden" name="max_width" id="max_width" value="{{$config['max_width'] ? $config['max_width'] : 400}}">
+        <input type="hidden" name="min_width" id="min_width" value="{{$config['min_width'] ? $config['min_width'] : 50}}">
+        <input type="hidden" name="max_height" id="max_height" value="{{$config['max_height'] ? $config['max_height'] : 1000}}">
+        <input type="hidden" name="min_height" id="min_height" value="{{$config['min_height'] ? $config['min_height'] : 50}}">
+        <input type="hidden" id="custom_size_validation" value="0">
+
     {!! view_render_event('bagisto.shop.products.view.configurable-options.after', ['product' => $product]) !!}
 
     @push('scripts')
@@ -137,9 +143,12 @@
         $(document).on('input', "#custom_width, #custom_height", function (e) {
 
             var locale = "<?php echo app()->getLocale(); ?>";
-            var currency = "<?php echo core()->getCurrentCurrency()->symbol; ?>";
-            console.log(currency);
+            var currency = "<?php echo core()->getCurrentCurrency()->code; ?>";
             var id = $(this).attr('id');
+            var max_width = $('#max_width').val();
+            var min_width = $('#min_width').val();
+            var max_height = $('#max_height').val();
+            var min_height = $('#min_height').val();
 
             if(id == 'custom_width')
             {
@@ -162,19 +171,106 @@
                 custom_height = 0;
             }
 
+            custom_width = parseInt(custom_width);
+            custom_height = parseInt(custom_height);
+
+            var max_width_flag = 0;
+            var min_width_flag = 0;
+            var max_height_flag = 0;
+            var min_height_flag = 0;
+
+            if(custom_width > max_width)
+            {
+                max_width_flag = 1;
+            }
+
+            if(custom_width < min_width)
+            {
+                min_width_flag = 1;
+            }
+
+            if(custom_height > max_height)
+            {
+                max_height_flag = 1;
+            }
+
+            if(custom_height < min_height)
+            {
+                min_height_flag = 1;
+            }
+
+            var msg = '';
+
+            if(max_width_flag)
+            {
+                msg+= 'Width is greater than max width: ' + max_width + '.\n'; 
+            }
+
+            if(min_width_flag)
+            {
+                msg+= 'Width is smaller than min width: ' + min_width + '.\n';
+            }
+
+            if(max_height_flag)
+            {
+                msg+= 'Height is greater than max height: ' + max_height + '.\n'; 
+            }
+
+            if(min_height_flag)
+            {
+                msg+= 'Height is smaller than min height: ' + min_height + '.\n';
+            }
+
+            if(max_width_flag || min_width_flag)
+            {
+                $('#custom_width').css('border','1px solid red');
+            }
+            else
+            {
+                $('#custom_width').css('border','');
+            }
+
+            if(max_height_flag || min_height_flag)
+            {
+                $('#custom_height').css('border','1px solid red');
+            }
+            else
+            {
+                $('#custom_height').css('border','');
+            }
+
+            if(max_width_flag || min_width_flag || max_height_flag || min_height_flag)
+            {
+                $('.custom-error-msg').remove();
+                $('.custom-measurements').append('<div class="custom-error-msg" style="color: red;margin-bottom: 20px;">'+msg+'</div>');
+                $('#custom_size_validation').val(1);
+            }
+            else
+            {
+                $('.custom-error-msg').remove();
+                $('#custom_size_validation').val(0);
+            }
+
             var custom_base_price = $('#custom_base_price').val();
+            //var custom_size_validation = $('#custom_size_validation').val();
 
             if(custom_base_price)
             {
                 var final_price = (custom_width/100) * (custom_height/100) * custom_base_price;
+                
                 final_price = parseFloat(final_price).toFixed(2);
                 $('#custom_final_price').val(final_price);
-                final_price = parseFloat(final_price).toLocaleString(locale);
-                var formated_price = currency + ' ' + final_price;
-                $('.product-price .final-price').text(formated_price);
+                
+                var myObj = {
+                    style: "currency",
+                    currency: currency
+                };
+
+                final_price = parseFloat(final_price).toLocaleString(locale,myObj) + ' m²';
+                $('.final-price').text(final_price);
 
                 $('#custom_base_price').val(custom_base_price);
-                $('#custom_formated_price').val(formated_price);
+                $('#custom_formated_price').val(final_price);
             }
             
         });
@@ -404,8 +500,8 @@
 
                         reloadPrice: function () {
 
-                            var locale = this.config.locale;
-                            var currency = this.config.currency_symbol;
+                            var locale = "<?php echo app()->getLocale(); ?>";
+                            var currency = "<?php echo core()->getCurrentCurrency()->code; ?>";
                             let selectedOptionCount = 0;
 
                             this.childAttributes.forEach(function(attribute) {
@@ -439,9 +535,16 @@
 
                                     var custom_base_price = this.config.variant_prices[this.simpleProduct].final_price.price;
                                     var final_price = (width/100) * (height/100) * custom_base_price;
+                                    final_price = parseFloat(final_price).toFixed(2);
+                                    
                                     $('#custom_final_price').val(final_price);
-                                    final_price = parseFloat(final_price).toLocaleString(locale);
-                                    priceElement.innerHTML = currency + ' ' + final_price;
+
+                                    var myObj = {
+                                        style: "currency",
+                                        currency: currency
+                                    };
+
+                                    priceElement.innerHTML = parseFloat(final_price).toLocaleString(locale,myObj) + ' m²';
 
                                     $('#custom_base_price').val(custom_base_price);
                                     $('#custom_formated_price').val(priceElement.innerHTML);
@@ -480,9 +583,16 @@
 
                                     var custom_base_price = this.config.regular_price.price;
                                     var final_price = (width/100) * (height/100) * custom_base_price;
+                                    final_price = parseFloat(final_price).toFixed(2);
+
                                     $('#custom_final_price').val(final_price);
-                                    final_price = parseFloat(final_price).toLocaleString(locale);
-                                    priceElement.innerHTML = currency + ' ' + final_price;
+
+                                    var myObj = {
+                                        style: "currency",
+                                        currency: currency
+                                    };
+
+                                    priceElement.innerHTML = parseFloat(final_price).toLocaleString(locale,myObj) + ' m²';
 
                                     $('#custom_base_price').val(custom_base_price);
                                     $('#custom_formated_price').val(priceElement.innerHTML);
