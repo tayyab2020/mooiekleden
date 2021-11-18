@@ -564,7 +564,15 @@
                                 }
 
                                 if (regularPriceElement) {
-                                    regularPriceElement.innerHTML = this.config.variant_prices[this.simpleProduct].regular_price.formated_price + ' m²';
+
+                                    if(this.simpleProductLabel == 'Custom Size' || this.simpleProductLabel == 'Maatwerk')
+                                    {
+                                        regularPriceElement.innerHTML = this.config.variant_prices[this.simpleProduct].regular_price.formated_price + ' m²';
+                                    }
+                                    else
+                                    {
+                                        regularPriceElement.innerHTML = this.config.variant_prices[this.simpleProduct].regular_price.formated_price;
+                                    }
                                 }
 
                                 eventBus.$emit('configurable-variant-selected-event', this.simpleProduct)
