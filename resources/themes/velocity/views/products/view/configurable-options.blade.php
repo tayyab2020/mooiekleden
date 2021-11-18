@@ -549,6 +549,7 @@
                                         currency: currency
                                     };
 
+                                    regularPriceElemen.innerHTML += ' m²'; 
                                     priceElement.innerHTML = parseFloat(final_price).toLocaleString(locale,myObj) + ' m²';
 
                                     $('#custom_base_price').val(custom_base_price);
