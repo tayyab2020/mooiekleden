@@ -536,6 +536,11 @@
                                     var custom_base_price = this.config.variant_prices[this.simpleProduct].final_price.price;
                                     var final_price = (width/100) * (height/100) * custom_base_price;
                                     final_price = parseFloat(final_price).toFixed(2);
+
+                                    if(final_price == 0)
+                                    {
+                                        final_price = this.config.variant_prices[this.simpleProduct].final_price.price;
+                                    }
                                     
                                     $('#custom_final_price').val(final_price);
 
@@ -584,6 +589,11 @@
                                     var custom_base_price = this.config.regular_price.price;
                                     var final_price = (width/100) * (height/100) * custom_base_price;
                                     final_price = parseFloat(final_price).toFixed(2);
+
+                                    if(final_price == 0)
+                                    {
+                                        final_price = this.config.regular_price.price;
+                                    }
 
                                     $('#custom_final_price').val(final_price);
 

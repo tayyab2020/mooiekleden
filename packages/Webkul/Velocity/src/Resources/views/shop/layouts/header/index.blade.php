@@ -10,7 +10,7 @@
                     @include('velocity::shop.layouts.particals.search-bar')
                 </div>
 
-                <div class="col-lg-6 col-md-12 vc-full-screen">
+                <div style="padding: 0;" class="col-lg-6 col-md-12 vc-full-screen">
                     <div class="left-wrapper">
 
                         {!! view_render_event('bagisto.shop.layout.header.wishlist.before') !!}
