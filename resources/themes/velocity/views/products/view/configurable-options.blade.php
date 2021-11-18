@@ -203,22 +203,22 @@
 
             if(max_width_flag)
             {
-                msg+= 'Width is greater than max width: ' + max_width + '.\n'; 
+                msg+= 'Maximale breedte in cm: ' + max_width + '.\n'; 
             }
 
             if(min_width_flag)
             {
-                msg+= 'Width is smaller than min width: ' + min_width + '.\n';
+                msg+= 'Minimale breedte in cm: ' + min_width + '.\n';
             }
 
             if(max_height_flag)
             {
-                msg+= 'Height is greater than max height: ' + max_height + '.\n'; 
+                msg+= 'Maximale lengte in cm: ' + max_height + '.\n'; 
             }
 
             if(min_height_flag)
             {
-                msg+= 'Height is smaller than min height: ' + min_height + '.\n';
+                msg+= 'Minimale lengte in cm: ' + min_height + '.\n';
             }
 
             if(max_width_flag || min_width_flag)

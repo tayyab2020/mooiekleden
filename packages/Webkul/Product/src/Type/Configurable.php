@@ -613,7 +613,14 @@ class Configurable extends AbstractType
             return trans('shop::app.checkout.cart.quantity.inventory_warning');
         }
 
-        $price = $childProduct->getTypeInstance()->getFinalPrice();
+        if($data['custom_final_price'])
+        {
+            $price = $data['custom_final_price'];
+        }
+        else
+        {
+            $price = $childProduct->getTypeInstance()->getFinalPrice();
+        }
 
         $products = [
             [

@@ -206,6 +206,7 @@ class Cart
             $parentCartItem = null;
 
             foreach ($cartProducts as $cartProduct) {
+
                 $cartItem = $this->getItemByProduct($cartProduct);
 
                 if (isset($cartProduct['parent_id'])) {
@@ -213,12 +214,17 @@ class Cart
                 }
 
                 if (! $cartItem) {
+                    
                     $cartItem = $this->cartItemRepository->create(array_merge($cartProduct, ['cart_id' => $cart->id]));
+                    
                 } else {
+
                     if (isset($cartProduct['parent_id']) && $cartItem->parent_id !== $parentCartItem->id) {
+                        
                         $cartItem = $this->cartItemRepository->create(array_merge($cartProduct, [
                             'cart_id' => $cart->id
                         ]));
+
                     } else {
                         // if ($cartItem->product->getTypeInstance()->isMultipleQtyAllowed() === false) {
                         //     return ['warning' => __('shop::app.checkout.cart.integrity.qty_impossible')];
@@ -236,7 +242,7 @@ class Cart
 
         Event::dispatch('checkout.cart.add.after', $cart);
 
-        $this->collectTotals();
+        $this->collectTotals($data);
 
         return $this->getCart();
     }
@@ -482,7 +488,7 @@ class Cart
      *
      * @return void
      */
-    public function collectTotals(): void
+    public function collectTotals($data = null): void
     {
         if (! $this->validateItems()) {
             return;
@@ -505,6 +511,12 @@ class Cart
         foreach ($cart->items as $item) {
             $cart->discount_amount += $item->discount_amount;
             $cart->base_discount_amount += $item->base_discount_amount;
+
+            if(isset($data) && $data['custom_final_price'])
+            {
+                $item->total = $data['custom_final_price'] * $data['quantity'];
+                $item->base_total = $data['custom_final_price'] * $data['quantity'];
+            }
 
             $cart->sub_total = (float)$cart->sub_total + $item->total;
             $cart->base_sub_total = (float)$cart->base_sub_total + $item->base_total;
@@ -631,7 +643,9 @@ class Cart
         $isInvalid = false;
 
         foreach ($cart->items as $item) {
+
             $validationResult = $item->product->getTypeInstance()->validateCartItem($item);
+            
 
             if ($validationResult->isItemInactive()) {
                 $this->removeItem($item->id);
