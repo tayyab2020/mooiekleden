@@ -490,9 +490,9 @@ class Cart
      */
     public function collectTotals($data = null): void
     {
-        if (! $this->validateItems()) {
+        /*if (! $this->validateItems()) {
             return;
-        }
+        }*/
 
         if (! $cart = $this->getCart()) {
             return;
