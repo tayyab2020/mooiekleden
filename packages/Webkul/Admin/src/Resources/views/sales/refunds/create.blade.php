@@ -255,7 +255,7 @@
                                         <div class="item-options">
 
                                             @foreach ($item->additional['attributes'] as $attribute)
-                                                <b>{{ $attribute['attribute_name'] }} : </b>{{ $attribute['option_label'] }}</br>
+                                                <b>{{ $attribute['attribute_name'] }} : </b>{{ $attribute['option_label'] }} {{ $attribute['option_label'] == 'Custom Size' || $attribute['option_label'] == 'Maatwerk' ? '(' . $item->custom_width . ' x ' . $item->custom_height . ')' : null }}</br>
                                             @endforeach
 
                                         </div>
@@ -294,7 +294,8 @@
                                     <td>{{ core()->formatBasePrice($item->base_discount_amount) }}</td>
                                 @endif
 
-                                <td>{{ core()->formatBasePrice($item->base_total + $item->base_tax_amount - $item->base_discount_amount) }}</td>
+                                {{--<td>{{ core()->formatBasePrice($item->base_total + $item->base_tax_amount - $item->base_discount_amount) }}</td>--}}
+                                <td>{{ core()->formatBasePrice($item->base_total - $item->base_discount_amount) }}</td>
 
                                 <td>{{ $item->qty_ordered }}</td>
 
@@ -385,7 +386,8 @@
                 <tr class="bold">
                     <td>{{ __('admin::app.sales.orders.grand-total') }}</td>
                     <td>-</td>
-                    <td>@{{ refund.summary.grand_total.formated_price }}</td>
+                    {{--<td>@{{ refund.summary.grand_total.formated_price }}</td>--}}
+                    <td>{{ core()->formatBasePrice($item->base_total - $item->base_discount_amount) }}</td>
                 </tr>
             </table>
         </div>

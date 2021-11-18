@@ -276,7 +276,7 @@
                                         <div class="item-options">
 
                                             @foreach ($item->additional['attributes'] as $attribute)
-                                                <b>{{ $attribute['attribute_name'] }} : </b>{{ $attribute['option_label'] }}</br>
+                                                <b>{{ $attribute['attribute_name'] }} : </b>{{ $attribute['option_label'] }} {{ $attribute['option_label'] == 'Custom Size' || $attribute['option_label'] == 'Maatwerk' ? '(' . $item->custom_width . ' x ' . $item->custom_height . ')' : null }}</br>
                                             @endforeach
 
                                         </div>

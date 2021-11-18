@@ -760,6 +760,8 @@ class Cart
             'discount_amount'      => $data['discount_amount'],
             'base_discount_amount' => $data['base_discount_amount'],
             'additional'           => is_array($data['additional']) ? array_merge($data['additional'], $locale) : $locale,
+            'custom_width'         => $data['custom_width'],
+            'custom_height'         => $data['custom_height'],
         ];
 
         if (isset($data['children']) && $data['children']) {

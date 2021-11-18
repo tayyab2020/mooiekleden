@@ -613,6 +613,17 @@ class Configurable extends AbstractType
             return trans('shop::app.checkout.cart.quantity.inventory_warning');
         }
 
+        if(isset($data['custom_width']) && isset($data['custom_height']))
+        {
+            $custom_width = $data['custom_width'];
+            $custom_height = $data['custom_height'];
+        }
+        else
+        {
+            $custom_width = '';
+            $custom_height = '';
+        }
+
         if(isset($data['custom_final_price']) && $data['custom_final_price'])
         {
             $price = $data['custom_final_price'];
@@ -624,6 +635,8 @@ class Configurable extends AbstractType
 
         $products = [
             [
+                'custom_width'      => $custom_width,
+                'custom_height'      => $custom_height,
                 'product_id'        => $this->product->id,
                 'sku'               => $this->product->sku,
                 'quantity'          => $data['quantity'],

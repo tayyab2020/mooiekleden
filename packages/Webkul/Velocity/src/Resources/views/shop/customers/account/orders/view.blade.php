@@ -94,7 +94,7 @@
                                                             <div class="item-options">
 
                                                                 @foreach ($item->additional['attributes'] as $attribute)
-                                                                    <b>{{ $attribute['attribute_name'] }} : </b>{{ $attribute['option_label'] }}</br>
+                                                                    <b>{{ $attribute['attribute_name'] }} : </b>{{ $attribute['option_label'] }} {{ $attribute['option_label'] == 'Custom Size' || $attribute['option_label'] == 'Maatwerk' ? '(' . $item->custom_width . ' x ' . $item->custom_height . ')' : null }}</br>
                                                                 @endforeach
 
                                                             </div>
@@ -139,9 +139,11 @@
                                                         {{ core()->formatPrice($item->tax_amount, $order->order_currency_code) }}
                                                     </td>
 
-                                                    <td data-value="{{ __('shop::app.customer.account.order.view.grand-total') }}">
+                                                    {{--<td data-value="{{ __('shop::app.customer.account.order.view.grand-total') }}">
                                                         {{ core()->formatPrice($item->total + $item->tax_amount - $item->discount_amount, $order->order_currency_code) }}
-                                                    </td>
+                                                    </td>--}}
+
+                                                    <td>{{ core()->formatBasePrice($item->total - $item->discount_amount) }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -283,8 +285,12 @@
                                                                 {{ core()->formatPrice($item->tax_amount, $order->order_currency_code) }}
                                                             </td>
 
-                                                            <td data-value="{{ __('shop::app.customer.account.order.view.grand-total') }}">
+                                                            {{--<td data-value="{{ __('shop::app.customer.account.order.view.grand-total') }}">
                                                                 {{ core()->formatPrice($item->total + $item->tax_amount, $order->order_currency_code) }}
+                                                            </td>--}}
+
+                                                            <td data-value="{{ __('shop::app.customer.account.order.view.grand-total') }}">
+                                                                {{ core()->formatPrice($item->total, $order->order_currency_code) }}
                                                             </td>
                                                         </tr>
                                                     @endforeach
