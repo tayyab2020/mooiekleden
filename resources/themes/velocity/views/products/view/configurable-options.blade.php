@@ -548,8 +548,7 @@
                                         style: "currency",
                                         currency: currency
                                     };
-
-                                    regularPriceElement.innerHTML += ' m²'; 
+                                    
                                     priceElement.innerHTML = parseFloat(final_price).toLocaleString(locale,myObj) + ' m²';
 
                                     $('#custom_base_price').val(custom_base_price);
@@ -565,7 +564,7 @@
                                 }
 
                                 if (regularPriceElement) {
-                                    regularPriceElement.innerHTML = this.config.variant_prices[this.simpleProduct].regular_price.formated_price;
+                                    regularPriceElement.innerHTML = this.config.variant_prices[this.simpleProduct].regular_price.formated_price + ' m²';
                                 }
 
                                 eventBus.$emit('configurable-variant-selected-event', this.simpleProduct)
