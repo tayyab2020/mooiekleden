@@ -512,7 +512,7 @@ class Cart
             $cart->discount_amount += $item->discount_amount;
             $cart->base_discount_amount += $item->base_discount_amount;
 
-            if(isset($data) && $data['custom_final_price'])
+            if(isset($data['custom_final_price']) && $data['custom_final_price'])
             {
                 $item->total = $data['custom_final_price'] * $data['quantity'];
                 $item->base_total = $data['custom_final_price'] * $data['quantity'];
