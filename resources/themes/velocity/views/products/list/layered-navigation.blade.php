@@ -70,12 +70,12 @@
                 <ul type="none" class="items ml15" v-if="attribute.type != 'price'">
                     
                     <li
-                    style="width: 30px;height: 30px;border-radius: 100%;margin-bottom: 10px;"
-                    :style="{'background-color': option.swatch_value}"
                         class="item"
                         v-for='(option, index) in attribute.options'>
 
-                        <div
+                        <div v-if="option.admin_name != 'White'"
+                            style="width: 30px;height: 30px;border-radius: 100%;margin-bottom: 10px;"
+                            :style="{'background-color': option.swatch_value}"
                             class="checkbox"
                             @click="optionClicked(option.id, $event)">
                             <input style="opacity: 0;width: 30px;height: 30px;"
@@ -86,6 +86,21 @@
                                 @change="addFilter($event)" />
                             <!--<span>@{{ option.label ? option.label : option.admin_name }}</span>-->
                         </div>
+
+                        <div v-else
+                            style="width: 30px;height: 30px;border-radius: 100%;margin-bottom: 10px;border: 1px solid #d0d0d0;"
+                            :style="{'background-color': option.swatch_value}"
+                            class="checkbox"
+                            @click="optionClicked(option.id, $event)">
+                            <input style="opacity: 0;width: 30px;height: 30px;"
+                                type="checkbox"
+                                :id="option.id"
+                                v-bind:value="option.id"
+                                v-model="appliedFilters"
+                                @change="addFilter($event)" />
+                            <!--<span>@{{ option.label ? option.label : option.admin_name }}</span>-->
+                        </div>
+
                     </li>
 
                 </ul>
