@@ -52,7 +52,8 @@
     </script>
 
     <script type="text/x-template" id="filter-attribute-item-template">
-        <div :class="`cursor-pointer filter-attributes-item ${active ? 'active' : ''}`">
+
+        <div v-if="attribute.name == 'Color'" :class="`cursor-pointer filter-attributes-item ${active ? 'active' : ''}`">
             <div class="filter-attributes-title" @click="active = !active">
                 <h6 class="fw6 display-inbl">@{{ attribute.name ? attribute.name : attribute.admin_name }}</h6>
 
@@ -67,22 +68,26 @@
 
             <div class="filter-attributes-content">
                 <ul type="none" class="items ml15" v-if="attribute.type != 'price'">
+                    
                     <li
+                    style="width: 30px;height: 30px;border-radius: 100%;"
+                    :style="{'background-color': option.swatch_value}"
                         class="item"
                         v-for='(option, index) in attribute.options'>
 
                         <div
                             class="checkbox"
                             @click="optionClicked(option.id, $event)">
-                            <input
+                            <input style="opacity: 0;width: 30px;height: 30px;"
                                 type="checkbox"
                                 :id="option.id"
                                 v-bind:value="option.id"
                                 v-model="appliedFilters"
                                 @change="addFilter($event)" />
-                            <span>@{{ option.label ? option.label : option.admin_name }}</span>
+                            <!--<span>@{{ option.label ? option.label : option.admin_name }}</span>-->
                         </div>
                     </li>
+
                 </ul>
 
                 <div class="price-range-wrapper" v-if="attribute.type == 'price'">
@@ -115,6 +120,74 @@
                 </div>
             </div>
         </div>
+
+
+        <div v-else :class="`cursor-pointer filter-attributes-item ${active ? 'active' : ''}`">
+            <div class="filter-attributes-title" @click="active = !active">
+                <h6 class="fw6 display-inbl">@{{ attribute.name ? attribute.name : attribute.admin_name }}</h6>
+
+                <div class="float-right display-table">
+                    <span class="link-color cursor-pointer" v-if="appliedFilters.length" @click.stop="clearFilters()">
+                        {{ __('shop::app.products.remove-filter-link-title') }}
+                    </span>
+
+                    <i :class="`icon fs16 cell ${active ? 'rango-arrow-up' : 'rango-arrow-down'}`"></i>
+                </div>
+            </div>
+
+            <div class="filter-attributes-content">
+                <ul type="none" class="items ml15" v-if="attribute.type != 'price'">
+                    
+                    <li
+                        class="item"
+                        v-for='(option, index) in attribute.options'>
+
+                        <div
+                            class="checkbox"
+                            @click="optionClicked(option.id, $event)">
+                            <input
+                                type="checkbox"
+                                :id="option.id"
+                                v-bind:value="option.id"
+                                v-model="appliedFilters"
+                                @change="addFilter($event)" />
+                            <span>@{{ option.label ? option.label : option.admin_name }}</span>
+                        </div>
+                    </li>
+
+                </ul>
+
+                <div class="price-range-wrapper" v-if="attribute.type == 'price'">
+                    <vue-slider
+                        ref="slider"
+                        v-model="sliderConfig.value"
+                        :process-style="sliderConfig.processStyle"
+                        :tooltip-style="sliderConfig.tooltipStyle"
+                        :max="sliderConfig.max"
+                        :lazy="true"
+                        @change="priceRangeUpdated($event)"
+                    ></vue-slider>
+
+                    <div class="filter-input row col-12 no-padding">
+                        <input
+                            type="text"
+                            disabled
+                            name="price_from"
+                            :value="sliderConfig.priceFrom"
+                            id="price_from" />
+
+                        <label class="col text-center" for="to">{{ __('shop::app.products.filter-to') }}</label>
+                        <input
+                        type="text"
+                        disabled
+                        name="price_to"
+                        :value="sliderConfig.priceTo"
+                        id="price_to">
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </script>
 
     <script>
