@@ -70,7 +70,7 @@
                 <ul type="none" class="items ml15" v-if="attribute.type != 'price'">
                     
                     <li
-                    style="width: 30px;height: 30px;border-radius: 100%;"
+                    style="width: 30px;height: 30px;border-radius: 100%;margin-bottom: 10px;"
                     :style="{'background-color': option.swatch_value}"
                         class="item"
                         v-for='(option, index) in attribute.options'>
