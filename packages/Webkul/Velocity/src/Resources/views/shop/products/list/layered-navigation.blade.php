@@ -67,9 +67,9 @@
             </div>
 
             <div class="filter-attributes-content">
-                <ul type="none" class="items ml15" v-if="attribute.type != 'price'">
+                <ul style="display: inline-block;width: 100%;margin-top: 10px;" type="none" class="items" v-if="attribute.type != 'price'">
                     
-                    <li
+                    <li style="float: left;width: 33.333333%;display: flex;justify-content: center;"
                         class="item"
                         v-for='(option, index) in attribute.options'>
 
