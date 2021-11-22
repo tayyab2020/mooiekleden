@@ -251,7 +251,6 @@ class ProductRepository extends Repository
                         });
                 }
             }
-            dd($qb->get());
 
             $attributeFilters = $this->attributeRepository
                 ->getProductDefaultAttributes(array_keys(
