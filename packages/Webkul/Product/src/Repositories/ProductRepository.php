@@ -160,8 +160,6 @@ class ProductRepository extends Repository
                 ->leftJoin('product_attribute_values', 'product_attribute_values.product_id', '=', 'variants.product_id')
                 ->where('product_flat.channel', $channel)
                 ->where('product_flat.locale', $locale)
-                ->where('product_flat.size_label', '!=',  'Custom Size')
-                ->where('product_flat.size_label', '!=',  'Maatwerk')
                 ->whereNotNull('product_flat.url_key');
 
             if ($categoryId) {
@@ -235,7 +233,9 @@ class ProductRepository extends Repository
                             $qb->where(function ($qb) use ($priceRange){
                                 $qb
                                     ->where('variants.min_price', '>=',  core()->convertToBasePrice($priceRange[0]))
-                                    ->where('variants.min_price', '<=',  core()->convertToBasePrice(end($priceRange)));
+                                    ->where('variants.min_price', '<=',  core()->convertToBasePrice(end($priceRange)))
+                                    ->where('variants.size_label', '!=',  'Custom Size')
+                                    ->where('variants.size_label', '!=',  'Maatwerk');
                             })
                             ->orWhere(function ($qb) use ($priceRange) {
                                 $qb
@@ -251,6 +251,7 @@ class ProductRepository extends Repository
                         });
                 }
             }
+            dd($qb->get());
 
             $attributeFilters = $this->attributeRepository
                 ->getProductDefaultAttributes(array_keys(
