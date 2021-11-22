@@ -233,7 +233,9 @@ class ProductRepository extends Repository
                             $qb->where(function ($qb) use ($priceRange){
                                 $qb
                                     ->where('variants.min_price', '>=',  core()->convertToBasePrice($priceRange[0]))
-                                    ->where('variants.min_price', '<=',  core()->convertToBasePrice(end($priceRange)));
+                                    ->where('variants.min_price', '<=',  core()->convertToBasePrice(end($priceRange)))
+                                    ->where('variants.size_label', '!=',  'Custom Size')
+                                    ->where('variants.size_label', '!=',  'Maatwerk');
                             })
                             ->orWhere(function ($qb) use ($priceRange) {
                                 $qb
@@ -257,6 +259,7 @@ class ProductRepository extends Repository
 
             if (count($attributeFilters) > 0) {
                 $qb->where(function ($filterQuery) use ($attributeFilters) {
+                    dd($attributeFilters);
 
                     foreach ($attributeFilters as $attribute) {
                         $filterQuery->orWhere(function ($attributeQuery) use ($attribute) {
