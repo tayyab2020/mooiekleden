@@ -89,6 +89,7 @@
                         </div>
 
                         <div v-else
+                            :title="option.label ? option.label : option.admin_name"
                             style="width: 30px;height: 30px;border-radius: 100%;margin-bottom: 10px;border: 1px solid #d0d0d0;"
                             :style="{'background-color': option.swatch_value}"
                             class="checkbox"

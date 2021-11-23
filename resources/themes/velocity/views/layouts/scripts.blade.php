@@ -1,6 +1,6 @@
 <script
     type="text/javascript"
-    src="{{ asset('themes/velocity/assets/js/velocity-core.js?id=33') }}">
+    src="{{ asset('themes/velocity/assets/js/velocity-core.js?id=34') }}">
 </script>
 
 <script type="text/javascript">
