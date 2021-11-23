@@ -53,7 +53,7 @@
 
     <script type="text/x-template" id="filter-attribute-item-template">
 
-        <div v-if="attribute.name == 'Color1' || attribute.name == 'Kleur1'" :class="`cursor-pointer filter-attributes-item ${active ? 'active' : ''}`">
+        <div v-if="attribute.name == 'Color' || attribute.name == 'Kleur'" :class="`cursor-pointer filter-attributes-item ${active ? 'active' : ''}`">
             <div class="filter-attributes-title" @click="active = !active">
                 <h6 class="fw6 display-inbl">@{{ attribute.name ? attribute.name : attribute.admin_name }}</h6>
 
