@@ -4,9 +4,9 @@
         class="quick-view-btn-container"
         @click="openQuickView({event: $event})">
 
-        <span class="rango-zoom-plus"></span>
+        <!--<span class="rango-zoom-plus"></span>
 
-        <button type="button">{{ __('products.quick-view') }}</button>
+        <button type="button">{{ __('products.quick-view') }}</button>-->
     </div>
 </template>
 

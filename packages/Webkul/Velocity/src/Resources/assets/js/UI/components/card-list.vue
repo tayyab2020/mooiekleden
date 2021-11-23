@@ -19,9 +19,9 @@
                     </div>
 
                     <div class="quick-view-btn-container" @click="openQuickView({details: card, event: $event})">
-                        <span class="rango-zoom-plus"></span>
+                        <!--<span class="rango-zoom-plus"></span>
 
-                        <button type="button">Quick View</button>
+                        <button type="button">Quick View</button>-->
                     </div>
                 </div>
 

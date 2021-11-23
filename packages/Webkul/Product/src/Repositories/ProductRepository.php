@@ -233,7 +233,9 @@ class ProductRepository extends Repository
                             $qb->where(function ($qb) use ($priceRange){
                                 $qb
                                     ->where('variants.min_price', '>=',  core()->convertToBasePrice($priceRange[0]))
-                                    ->where('variants.min_price', '<=',  core()->convertToBasePrice(end($priceRange)));
+                                    ->where('variants.max_price', '<=',  core()->convertToBasePrice(end($priceRange)))
+                                    ->where('variants.size_label', '!=',  'Custom Size')
+                                    ->where('variants.size_label', '!=',  'Maatwerk');
                             })
                             ->orWhere(function ($qb) use ($priceRange) {
                                 $qb
@@ -292,7 +294,7 @@ class ProductRepository extends Repository
                 # this is key! if a product has been filtered down to the same number of attributes that we filtered on,
                 # we know that it has matched all of the requested filters.
                 $qb->groupBy('variants.id');
-                $qb->havingRaw('COUNT(*) = ' . count($attributeFilters));
+                /*$qb->havingRaw('COUNT(*) = ' . count($attributeFilters));*/
             }
 
             return $qb->groupBy('product_flat.id');
