@@ -9,7 +9,6 @@ use Webkul\Product\Datatypes\CartItemValidationResult;
 use Webkul\Product\Facades\ProductImage;
 use Webkul\Product\Models\ProductAttributeValue;
 use Webkul\Product\Models\ProductFlat;
-use Illuminate\Support\Arr;
 
 class Configurable extends AbstractType
 {
@@ -164,13 +163,9 @@ class Configurable extends AbstractType
         if ($route != 'admin.catalog.products.massupdate') {
             $previousVariantIds = $product->variants->pluck('id');
 
-            /*$ar = Arr::except($data,['name','sku','url_key','_token','default_variant_id','variants','channels']);*/
-
             if (isset($data['variants'])) {
 
                 foreach ($data['variants'] as $variantId => $variantData) {
-
-                    /*$variantData = array_merge($variantData,$ar);*/
 
                     if (Str::contains($variantId, 'variant_')) {
                         $permutation = [];
