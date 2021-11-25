@@ -233,7 +233,7 @@ class ProductRepository extends Repository
                             $qb->where(function ($qb) use ($priceRange){
                                 $qb
                                     ->where('variants.min_price', '>=',  core()->convertToBasePrice($priceRange[0]))
-                                    ->where('variants.min_price', '<=',  core()->convertToBasePrice(end($priceRange)));
+                                    ->where('variants.max_price', '<=',  core()->convertToBasePrice(end($priceRange)));
                             })
                             ->orWhere(function ($qb) use ($priceRange) {
                                 $qb
