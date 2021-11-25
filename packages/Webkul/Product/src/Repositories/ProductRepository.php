@@ -160,6 +160,8 @@ class ProductRepository extends Repository
                 ->leftJoin('product_attribute_values', 'product_attribute_values.product_id', '=', 'variants.product_id')
                 ->where('product_flat.channel', $channel)
                 ->where('product_flat.locale', $locale)
+                ->where('product_flat.size_label', '!=',  'Custom Size')
+                ->where('product_flat.size_label', '!=',  'Maatwerk')
                 ->whereNotNull('product_flat.url_key');
 
             if ($categoryId) {
