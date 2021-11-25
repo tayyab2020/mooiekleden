@@ -24,7 +24,7 @@ class Configurable extends AbstractType
      *
      * @var array
      */
-    protected $fillableTypes = ['sku', 'name', 'url_key', 'short_description', 'description', 'price', 'weight', 'status', 'color', 'brand', 'Materiaal_pool', 'Dessin', 'Ruimte', 'Materiaal_rug', 'Meerprijs', 'Maatwerk', 'Vorm', 'Size_circle', 'max_width1', 'min_width1', 'max_height1', 'min_height1', 'Soort'];
+    protected $fillableTypes = ['sku', 'name', 'url_key', 'short_description', 'description', 'price', 'weight', 'status', 'color', 'brand', 'Materiaal_pool', 'Dessin', 'Ruimte', 'Materiaal_rug', 'Meerprijs', 'Maatwerk', 'Vorm', 'Size_circle', 'max_width1', 'min_width1', 'max_height1', 'min_height1', 'Soort', 'material'];
 
     /**
      * These blade files will be included in product edit page.
@@ -187,80 +187,183 @@ class Configurable extends AbstractType
 
                         if(isset($data['color']))
                         {
-                            $variantData['color'] = $data['color'];
+                            if(is_array($data['color']))
+                            {
+                                $variantData['color'] = implode(',',$data['color']);
+                            }
+                            else
+                            {
+                                $variantData['color'] = $data['color'];
+                            }
                         }
 
                         if(isset($data['brand']))
                         {
-                            $variantData['brand'] = $data['brand'];
+                            if(is_array($data['brand']))
+                            {
+                                $variantData['brand'] = implode(',',$data['brand']);
+                            }
+                            else
+                            {
+                                $variantData['brand'] = $data['brand'];
+                            }
                         }
 
                         if(isset($data['Materiaal_pool']))
                         {
-                            $variantData['Materiaal_pool'] = $data['Materiaal_pool'];
+                            if(is_array($data['Materiaal_pool']))
+                            {
+                                $variantData['Materiaal_pool'] = implode(',',$data['Materiaal_pool']);
+                            }
+                            else
+                            {
+                                $variantData['Materiaal_pool'] = $data['Materiaal_pool'];
+                            }
                         }
 
                         if(isset($data['Dessin']))
                         {
-                            $variantData['Dessin'] = $data['Dessin'];
+                            if(is_array($data['Dessin']))
+                            {
+                                $variantData['Dessin'] = implode(',',$data['Dessin']);
+                            }
+                            else
+                            {
+                                $variantData['Dessin'] = $data['Dessin'];
+                            }
                         }
 
                         if(isset($data['Ruimte']))
                         {
-                            $variantData['Ruimte'] = $data['Ruimte'];
+                            if(is_array($data['Ruimte']))
+                            {
+                                $variantData['Ruimte'] = implode(',',$data['Ruimte']);
+                            }
+                            else
+                            {
+                                $variantData['Ruimte'] = $data['Ruimte'];
+                            }
                         }
 
                         if(isset($data['Materiaal_rug']))
                         {
-                            $variantData['Materiaal_rug'] = $data['Materiaal_rug'];
+                            if(is_array($data['Materiaal_rug']))
+                            {
+                                $variantData['Materiaal_rug'] = implode(',',$data['Materiaal_rug']);
+                            }
+                            else
+                            {
+                                $variantData['Materiaal_rug'] = $data['Materiaal_rug'];
+                            }
                         }
 
                         if(isset($data['Meerprijs']))
                         {
-                            $variantData['Meerprijs'] = $data['Meerprijs'];
+                            if(is_array($data['Meerprijs']))
+                            {
+                                $variantData['Meerprijs'] = implode(',',$data['Meerprijs']);
+                            }
+                            else
+                            {
+                                $variantData['Meerprijs'] = $data['Meerprijs'];
+                            }
                         }
 
                         if(isset($data['Maatwerk']))
                         {
-                            $variantData['Maatwerk'] = $data['Maatwerk'];
+                            if(is_array($data['Maatwerk']))
+                            {
+                                $variantData['Maatwerk'] = implode(',',$data['Maatwerk']);
+                            }
+                            else
+                            {
+                                $variantData['Maatwerk'] = $data['Maatwerk'];
+                            }
                         }
 
                         if(isset($data['Vorm']))
                         {
-                            $variantData['Vorm'] = $data['Vorm'];
+                            if(is_array($data['Vorm']))
+                            {
+                                $variantData['Vorm'] = implode(',',$data['Vorm']);
+                            }
+                            else
+                            {
+                                $variantData['Vorm'] = $data['Vorm'];
+                            }
                         }
 
                         if(isset($data['Size_circle']))
                         {
-                            $variantData['Size_circle'] = $data['Size_circle'];
+                            if(is_array($data['Size_circle']))
+                            {
+                                $variantData['Size_circle'] = implode(',',$data['Size_circle']);
+                            }
+                            else
+                            {
+                                $variantData['Size_circle'] = $data['Size_circle'];
+                            }
                         }
 
                         if(isset($data['max_width1']))
                         {
-                            $variantData['max_width1'] = $data['max_width1'];
+                            if(is_array($data['max_width1']))
+                            {
+                                $variantData['max_width1'] = implode(',',$data['max_width1']);
+                            }
+                            else
+                            {
+                                $variantData['max_width1'] = $data['max_width1'];
+                            }
                         }
 
                         if(isset($data['min_width1']))
                         {
-                            $variantData['min_width1'] = $data['min_width1'];
+                            if(is_array($data['min_width1']))
+                            {
+                                $variantData['min_width1'] = implode(',',$data['min_width1']);
+                            }
+                            else
+                            {
+                                $variantData['min_width1'] = $data['min_width1'];
+                            }
                         }
 
                         if(isset($data['max_height1']))
                         {
-                            $variantData['max_height1'] = $data['max_height1'];
+                            if(is_array($data['max_height1']))
+                            {
+                                $variantData['max_height1'] = implode(',',$data['max_height1']);
+                            }
+                            else
+                            {
+                                $variantData['max_height1'] = $data['max_height1'];
+                            }
                         }
 
                         if(isset($data['min_height1']))
                         {
-                            $variantData['min_height1'] = $data['min_height1'];
+                            if(is_array($data['min_height1']))
+                            {
+                                $variantData['min_height1'] = implode(',',$data['min_height1']);
+                            }
+                            else
+                            {
+                                $variantData['min_height1'] = $data['min_height1'];
+                            }
                         }
 
                         if(isset($data['Soort']))
                         {
-                            $variantData['Soort'] = $data['Soort'];
+                            if(is_array($data['Soort']))
+                            {
+                                $variantData['Soort'] = implode(',',$data['Soort']);
+                            }
+                            else
+                            {
+                                $variantData['Soort'] = $data['Soort'];
+                            }
                         }
-
-                        dd($variantData);
 
                         $this->updateVariant($variantData, $variantId);
                     }
