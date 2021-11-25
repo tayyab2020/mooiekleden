@@ -167,6 +167,8 @@ class Configurable extends AbstractType
 
                 foreach ($data['variants'] as $variantId => $variantData) {
 
+                    dd($variantId);
+
                     if (Str::contains($variantId, 'variant_')) {
                         $permutation = [];
 
