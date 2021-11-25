@@ -165,8 +165,6 @@ class Configurable extends AbstractType
 
             if (isset($data['variants'])) {
 
-                dd($data['variants']);
-
                 foreach ($data['variants'] as $variantId => $variantData) {
 
                     if (Str::contains($variantId, 'variant_')) {
@@ -261,6 +259,8 @@ class Configurable extends AbstractType
                         {
                             $variantData['Soort'] = $data['Soort'];
                         }
+
+                        dd($variantData);
 
                         $this->updateVariant($variantData, $variantId);
                     }
