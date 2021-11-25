@@ -229,6 +229,8 @@ class ProductRepository extends Repository
                     $qb
                         ->leftJoin('catalog_rule_product_prices', 'catalog_rule_product_prices.product_id', '=', 'variants.product_id')
                         ->leftJoin('product_customer_group_prices', 'product_customer_group_prices.product_id', '=', 'variants.product_id')
+                        ->where('variants.size_label', '!=',  'Custom Size')
+                        ->where('variants.size_label', '!=',  'Maatwerk')
                         ->where(function ($qb) use ($priceRange, $customerGroupId) {
                             $qb->where(function ($qb) use ($priceRange){
                                 $qb
