@@ -9,6 +9,7 @@ use Webkul\Product\Datatypes\CartItemValidationResult;
 use Webkul\Product\Facades\ProductImage;
 use Webkul\Product\Models\ProductAttributeValue;
 use Webkul\Product\Models\ProductFlat;
+use Illuminate\Support\Arr;
 
 class Configurable extends AbstractType
 {
@@ -24,7 +25,7 @@ class Configurable extends AbstractType
      *
      * @var array
      */
-    protected $fillableTypes = ['sku', 'name', 'url_key', 'short_description', 'description', 'price', 'weight', 'status'];
+    protected $fillableTypes = ['sku', 'name', 'url_key', 'short_description', 'description', 'price', 'weight', 'status', 'color', 'brand', 'Materiaal_pool', 'Dessin', 'Ruimte', 'Materiaal_rug', 'Meerprijs', 'Maatwerk', 'Vorm', 'Size_circle', 'max_width1', 'min_width1', 'max_height1', 'min_height1', 'Soort'];
 
     /**
      * These blade files will be included in product edit page.
@@ -163,8 +164,14 @@ class Configurable extends AbstractType
         if ($route != 'admin.catalog.products.massupdate') {
             $previousVariantIds = $product->variants->pluck('id');
 
+            /*$ar = Arr::except($data,['name','sku','url_key','_token','default_variant_id','variants','channels']);*/
+
             if (isset($data['variants'])) {
+
                 foreach ($data['variants'] as $variantId => $variantData) {
+
+                    /*$variantData = array_merge($variantData,$ar);*/
+
                     if (Str::contains($variantId, 'variant_')) {
                         $permutation = [];
 
@@ -182,6 +189,81 @@ class Configurable extends AbstractType
 
                         $variantData['channel'] = $data['channel'];
                         $variantData['locale'] = $data['locale'];
+
+                        if(isset($data['color']))
+                        {
+                            $variantData['color'] = $data['color'];
+                        }
+
+                        if(isset($data['brand']))
+                        {
+                            $variantData['brand'] = $data['brand'];
+                        }
+
+                        if(isset($data['Materiaal_pool']))
+                        {
+                            $variantData['Materiaal_pool'] = $data['Materiaal_pool'];
+                        }
+
+                        if(isset($data['Dessin']))
+                        {
+                            $variantData['Dessin'] = $data['Dessin'];
+                        }
+
+                        if(isset($data['Ruimte']))
+                        {
+                            $variantData['Ruimte'] = $data['Ruimte'];
+                        }
+
+                        if(isset($data['Materiaal_rug']))
+                        {
+                            $variantData['Materiaal_rug'] = $data['Materiaal_rug'];
+                        }
+
+                        if(isset($data['Meerprijs']))
+                        {
+                            $variantData['Meerprijs'] = $data['Meerprijs'];
+                        }
+
+                        if(isset($data['Maatwerk']))
+                        {
+                            $variantData['Maatwerk'] = $data['Maatwerk'];
+                        }
+
+                        if(isset($data['Vorm']))
+                        {
+                            $variantData['Vorm'] = $data['Vorm'];
+                        }
+
+                        if(isset($data['Size_circle']))
+                        {
+                            $variantData['Size_circle'] = $data['Size_circle'];
+                        }
+
+                        if(isset($data['max_width1']))
+                        {
+                            $variantData['max_width1'] = $data['max_width1'];
+                        }
+
+                        if(isset($data['min_width1']))
+                        {
+                            $variantData['min_width1'] = $data['min_width1'];
+                        }
+
+                        if(isset($data['max_height1']))
+                        {
+                            $variantData['max_height1'] = $data['max_height1'];
+                        }
+
+                        if(isset($data['min_height1']))
+                        {
+                            $variantData['min_height1'] = $data['min_height1'];
+                        }
+
+                        if(isset($data['Soort']))
+                        {
+                            $variantData['Soort'] = $data['Soort'];
+                        }
 
                         $this->updateVariant($variantData, $variantId);
                     }
