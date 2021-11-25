@@ -256,7 +256,6 @@ class ProductRepository extends Repository
                 ));
 
             if (count($attributeFilters) > 0) {
-
                 $qb->where(function ($filterQuery) use ($attributeFilters) {
 
                     foreach ($attributeFilters as $attribute) {
