@@ -235,7 +235,7 @@ class ProductRepository extends Repository
                                     ->where('variants.min_price', '>=',  core()->convertToBasePrice($priceRange[0]))
                                     ->where('variants.min_price', '<=',  core()->convertToBasePrice(end($priceRange)))
                                     ->where('variants.size_label', '!=',  'Custom Size')
--                                   ->where('variants.size_label', '!=',  'Maatwerk');
+                                    ->where('variants.size_label', '!=',  'Maatwerk');
                             })
                             ->orWhere(function ($qb) use ($priceRange) {
                                 $qb
