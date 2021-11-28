@@ -227,12 +227,13 @@ class ProductRepository extends Repository
                     }
 
                     $qb
-                        ->where('variants.size_label', '!=','Custom Size')->where('variants.size_label', '!=','Maatwerk')
                         /*->leftJoin('catalog_rule_product_prices', 'catalog_rule_product_prices.product_id', '=', 'variants.product_id')*/
                         ->leftJoin('product_customer_group_prices', 'product_customer_group_prices.product_id', '=', 'variants.product_id')
                         ->where(function ($qb) use ($priceRange, $customerGroupId) {
                             $qb->where(function ($qb) use ($priceRange){
                                 $qb
+                                    ->where('variants.size_label', '!=','Custom Size')
+                                    ->where('variants.size_label', '!=','Maatwerk')
                                     ->where('variants.min_price', '>=',  core()->convertToBasePrice($priceRange[0]))
                                     ->where('variants.min_price', '<=',  core()->convertToBasePrice(end($priceRange)));
                             })
