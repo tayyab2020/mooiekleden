@@ -70,7 +70,7 @@ export default {
 
     .banner-icon
     {
-        height: 550px;
+        height: 470px;
     }
 
 }
