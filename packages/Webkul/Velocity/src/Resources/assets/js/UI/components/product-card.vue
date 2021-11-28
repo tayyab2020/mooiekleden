@@ -69,7 +69,7 @@
 
             <div class="product-price fs16" v-html="product.priceHTML"></div>
 
-            <div
+            <!--<div
                 class="product-rating col-12 no-padding"
                 v-if="product.totalReviews && product.totalReviews > 0">
 
@@ -81,7 +81,7 @@
 
             <div class="product-rating col-12 no-padding" v-else>
                 <span class="fs14" v-text="product.firstReviewText"></span>
-            </div>
+            </div>-->
 
             <vnode-injector :nodes="getDynamicHTML(product.addToCartHtml)"></vnode-injector>
         </div>
