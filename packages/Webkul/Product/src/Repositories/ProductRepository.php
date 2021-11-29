@@ -675,7 +675,6 @@ class ProductRepository extends Repository
     private function persistAttributeValues(Product $originalProduct, Product $copiedProduct): void
     {
         $copyOf = trans('admin::app.copy-of');
-                dd($copyOf);
         $attributeIds = $this->gatherAttributeIds();
 
         $newProductFlat = new ProductFlat();
