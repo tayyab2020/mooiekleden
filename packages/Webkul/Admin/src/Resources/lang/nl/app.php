@@ -2,6 +2,8 @@
 
 return [
     'save' => 'Opslaan',
+    'copy-of'       => 'Copy of ',
+    'copy-of-slug'  => 'copy-of-',
     'create' => 'Creëren',
     'update' => 'Bijwerken',
     'delete' => 'Verwijder',
