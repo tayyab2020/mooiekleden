@@ -70,7 +70,7 @@ return [
     'search' => [
         'no-results' => 'No Results Found',
         'page-title' => config('app.name') . ' - Search',
-        'found-results' => 'Search Results Found',
+        'found-results' => 'resultaten gevonden',
         'found-result' => 'Search Result Found',
         'analysed-keywords' => 'Analysed Keywords',
         'image-search-option' => 'Image Search Option'
