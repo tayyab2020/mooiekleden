@@ -71,7 +71,9 @@ return [
         'no-results' => 'No Results Found',
         'page-title' => config('app.name') . ' - Search',
         'found-results' => 'resultaten gevonden',
-        'found-result' => 'Search Result Found',
+        'found-result' => 'resultate gevonden',
+        'found-results1' => 'resultaten gevonden',
+        'found-result1' => 'resultate gevonden',
         'analysed-keywords' => 'Analysed Keywords',
         'image-search-option' => 'Image Search Option'
     ],

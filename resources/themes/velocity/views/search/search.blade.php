@@ -98,11 +98,11 @@
                 @else
                     @if ($results->total() == 1)
                         <h5 class="fw6 col-12 mb20">
-                            {{ $results->total() }} {{ __('shop::app.search.found-result') }}
+                            {{ $results->total() }} {{ __('shop::app.search.found-result1') }}
                         </h5>
                     @else
                         <h2 class="fw6 col-12 mb20">
-                            {{ $results->total() }} {{ __('shop::app.search.found-results') }}
+                            {{ $results->total() }} {{ __('shop::app.search.found-results1') }}
                         </h2>
                     @endif
 
