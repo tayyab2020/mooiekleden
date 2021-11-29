@@ -749,8 +749,6 @@ class ProductRepository extends Repository
 
         }
 
-        exit();
-
         $newProductFlat->save();
     }
 
