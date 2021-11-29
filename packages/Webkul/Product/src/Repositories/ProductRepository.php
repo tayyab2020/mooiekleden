@@ -696,7 +696,7 @@ class ProductRepository extends Repository
 
             $newValue = $oldValue->replicate();
 
-            var_dump($oldValue->attribute_id);
+            var_dump((int)$oldValue->attribute_id);
             var_dump($attributeIds['name']);
 
             // change name of copied product
