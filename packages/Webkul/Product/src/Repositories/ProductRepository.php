@@ -689,8 +689,6 @@ class ProductRepository extends Repository
 
         $randomSuffix = substr(md5(microtime()), 0, 6);
 
-        dd($originalProduct->attribute_values);
-
         foreach ($originalProduct->attribute_values as $oldValue) {
             if (in_array($oldValue->attribute->code, $attributesToSkip)) {
                 continue;
@@ -698,11 +696,8 @@ class ProductRepository extends Repository
 
             $newValue = $oldValue->replicate();
 
-            var_dump((int)$oldValue->attribute_id);
-            var_dump($attributeIds['name']);
-
             // change name of copied product
-            if ($oldValue->attribute_id === $attributeIds['name']) {
+            if ((int)$oldValue->attribute_id === $attributeIds['name']) {
                 $copyOf = trans('admin::app.copy-of');
                 $copiedName = sprintf('%s%s (%s)',
                     Str::startsWith($originalProduct->name, $copyOf) ? '' : $copyOf,
@@ -715,7 +710,7 @@ class ProductRepository extends Repository
             }
 
             // change url_key of copied product
-            if ($oldValue->attribute_id === $attributeIds['url_key']) {
+            if ((int)$oldValue->attribute_id === $attributeIds['url_key']) {
                 $copyOfSlug = trans('admin::app.copy-of-slug');
                 $copiedSlug = sprintf('%s%s-%s',
                     Str::startsWith($originalProduct->url_key, $copyOfSlug) ? '' : $copyOfSlug,
@@ -727,13 +722,13 @@ class ProductRepository extends Repository
             }
 
             // change sku of copied product
-            if ($oldValue->attribute_id === $attributeIds['sku']) {
+            if ((int)$oldValue->attribute_id === $attributeIds['sku']) {
                 $newValue->text_value = $copiedProduct->sku;
                 $newProductFlat->sku = $copiedProduct->sku;
             }
 
             // change product number
-            if ($oldValue->attribute_id === $attributeIds['product_number']) {
+            if ((int)$oldValue->attribute_id === $attributeIds['product_number']) {
                 $copyProductNumber = trans('admin::app.copy-of-slug');
                 $copiedProductNumber = sprintf('%s%s-%s',
                     Str::startsWith($originalProduct->product_number, $copyProductNumber) ? '' : $copyProductNumber,
@@ -745,7 +740,7 @@ class ProductRepository extends Repository
             }
 
             // force the copied product to be inactive so the admin can adjust it before release
-            if ($oldValue->attribute_id === $attributeIds['status']) {
+            if ((int)$oldValue->attribute_id === $attributeIds['status']) {
                 $newValue->boolean_value = 0;
                 $newProductFlat->status = 0;
             }
