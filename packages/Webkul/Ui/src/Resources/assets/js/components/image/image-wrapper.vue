@@ -9,6 +9,7 @@
                 :required="required"
                 :remove-button-label="removeButtonLabel"
                 @onRemoveImage="removeImage($event)"
+                :type-images="typeImages"
             ></image-item>
         </div>
 
@@ -19,6 +20,13 @@
 <script>
     export default {
         props: {
+
+            typeImages: {
+                type: String,
+                required: false,
+                default: 'Type'
+            },
+
             buttonLabel: {
                 type: String,
                 required: false,
@@ -59,7 +67,7 @@
         data: function() {
             return {
                 imageCount: 0,
-                items: []
+                items: [],
             }
         },
 
@@ -116,7 +124,7 @@
                 let index = this.items.indexOf(image)
 
                 Vue.delete(this.items, index);
-            }
+            },
         }
 
     }

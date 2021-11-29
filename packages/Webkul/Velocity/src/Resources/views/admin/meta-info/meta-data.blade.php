@@ -172,6 +172,8 @@
                             }
 
                             $advertisement = json_decode($metaData->get('advertisement')->all()[$index]->advertisement, true);
+                            $images_txts = json_decode($metaData->images_texts, true);
+                            $images_urls = json_decode($metaData->images_urls, true);
                         @endphp
 
                         @if(! isset($advertisement[4]) || ! count($advertisement[4]))
@@ -179,18 +181,26 @@
                                 $images[4][] = [
                                     'id' => 'image_1',
                                     'url' => asset('/themes/velocity/assets/images/big-sale-banner.webp'),
+                                    'txt' => '',
+                                    'url1' => '',
                                 ];
                                 $images[4][] = [
                                     'id' => 'image_2',
                                     'url' => asset('/themes/velocity/assets/images/seasons.webp'),
+                                    'txt' => '',
+                                    'url1' => '',
                                 ];
                                 $images[4][] = [
                                     'id' => 'image_3',
                                     'url' => asset('/themes/velocity/assets/images/deals.webp'),
+                                    'txt' => '',
+                                    'url1' => '',
                                 ];
                                 $images[4][] = [
                                     'id' => 'image_4',
                                     'url' => asset('/themes/velocity/assets/images/kids.webp'),
+                                    'txt' => '',
+                                    'url1' => '',
                                 ];
                             @endphp
 
@@ -198,15 +208,24 @@
                                 :multiple="true"
                                 input-name="images[4]"
                                 :images='@json($images[4])'
-                                :button-label="'{{ __('velocity::app.admin.meta-data.add-image-btn-title') }}'">
+                                :button-label="'{{ __('velocity::app.admin.meta-data.add-image-btn-title') }}'"
+                                type-images='four'>
                             </image-wrapper>
                         @else
+                                
+                            @php $x = 0; @endphp
+                            
                             @foreach ($advertisement[4] as $index => $image)
                                 @php
+
                                     $images[4][] = [
                                         'id' => 'image_' . $index,
                                         'url' => asset('/storage/' . $image),
+                                        'txt' => $images_txts[$x],
+                                        'url1' => $images_urls[$x],
                                     ];
+
+                                    $x = $x + 1;
                                 @endphp
                             @endforeach
 
@@ -214,7 +233,8 @@
                                 :multiple="true"
                                 input-name="images[4]"
                                 :images='@json($images[4])'
-                                :button-label="'{{ __('velocity::app.admin.meta-data.add-image-btn-title') }}'">
+                                :button-label="'{{ __('velocity::app.admin.meta-data.add-image-btn-title') }}'"
+                                type-images='four'>
                             </image-wrapper>
                         @endif
                     </div>
