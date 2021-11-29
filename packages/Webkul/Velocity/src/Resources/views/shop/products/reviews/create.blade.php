@@ -105,5 +105,5 @@
 @endsection
 
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('vendor/webkul/ui/assets/js/ui.js?id=2') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/webkul/ui/assets/js/ui.js?id=3') }}"></script>
 @endpush

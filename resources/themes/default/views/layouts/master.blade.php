@@ -112,7 +112,7 @@
     </script>
 
     <script type="text/javascript" src="{{ bagisto_asset('js/shop.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('vendor/webkul/ui/assets/js/ui.js?id=2') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/webkul/ui/assets/js/ui.js?id=3') }}"></script>
 
     @stack('scripts')
 
