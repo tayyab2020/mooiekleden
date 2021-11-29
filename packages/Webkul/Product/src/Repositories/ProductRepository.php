@@ -696,6 +696,9 @@ class ProductRepository extends Repository
 
             $newValue = $oldValue->replicate();
 
+            var_dump($oldValue->attribute_id);
+            var_dump($attributeIds['name']);
+
             // change name of copied product
             if ($oldValue->attribute_id === $attributeIds['name']) {
                 $copyOf = trans('admin::app.copy-of');
@@ -705,7 +708,6 @@ class ProductRepository extends Repository
                     $randomSuffix
                 );
 
-                dd($copiedName);
                 $newValue->text_value = $copiedName;
                 $newProductFlat->name = $copiedName;
             }
@@ -749,6 +751,8 @@ class ProductRepository extends Repository
             $copiedProduct->attribute_values()->save($newValue);
 
         }
+
+        exit();
 
         $newProductFlat->save();
     }
