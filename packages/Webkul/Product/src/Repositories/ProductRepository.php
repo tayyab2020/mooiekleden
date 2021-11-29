@@ -689,6 +689,8 @@ class ProductRepository extends Repository
 
         $randomSuffix = substr(md5(microtime()), 0, 6);
 
+        dd($originalProduct->attribute_values);
+
         foreach ($originalProduct->attribute_values as $oldValue) {
             if (in_array($oldValue->attribute->code, $attributesToSkip)) {
                 continue;
