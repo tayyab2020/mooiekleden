@@ -674,7 +674,6 @@ class ProductRepository extends Repository
 
     private function persistAttributeValues(Product $originalProduct, Product $copiedProduct): void
     {
-        $copyOf = trans('admin::app.copy-of');
         $attributeIds = $this->gatherAttributeIds();
 
         $newProductFlat = new ProductFlat();
@@ -700,12 +699,13 @@ class ProductRepository extends Repository
             // change name of copied product
             if ($oldValue->attribute_id === $attributeIds['name']) {
                 $copyOf = trans('admin::app.copy-of');
-                dd($copyOf);
                 $copiedName = sprintf('%s%s (%s)',
                     Str::startsWith($originalProduct->name, $copyOf) ? '' : $copyOf,
                     $originalProduct->name,
                     $randomSuffix
                 );
+
+                dd($copiedName);
                 $newValue->text_value = $copiedName;
                 $newProductFlat->name = $copiedName;
             }
