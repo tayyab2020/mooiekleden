@@ -266,7 +266,7 @@
                     currency: currency
                 };
 
-                final_price = parseFloat(final_price).toLocaleString(locale,myObj) + ' m²';
+                final_price = parseFloat(final_price).toLocaleString(locale,myObj) + ' per kleed';
                 $('.final-price').text(final_price);
 
                 $('#custom_base_price').val(custom_base_price);
@@ -549,7 +549,14 @@
                                         currency: currency
                                     };
 
-                                    priceElement.innerHTML = parseFloat(final_price).toLocaleString(locale,myObj) + ' m²';
+                                    if($('#custom_width').val() || $('#custom_height').val())
+                                    {
+                                        priceElement.innerHTML = parseFloat(final_price).toLocaleString(locale,myObj) + ' per kleed';
+                                    }
+                                    else
+                                    {
+                                        priceElement.innerHTML = parseFloat(final_price).toLocaleString(locale,myObj) + ' m²';
+                                    }
 
                                     $('#custom_base_price').val(custom_base_price);
                                     $('#custom_formated_price').val(priceElement.innerHTML);
@@ -602,7 +609,14 @@
                                         currency: currency
                                     };
 
-                                    priceElement.innerHTML = parseFloat(final_price).toLocaleString(locale,myObj) + ' m²';
+                                    if($('#custom_width').val() || $('#custom_height').val())
+                                    {
+                                        priceElement.innerHTML = parseFloat(final_price).toLocaleString(locale,myObj) + ' per kleed';
+                                    }
+                                    else
+                                    {
+                                        priceElement.innerHTML = parseFloat(final_price).toLocaleString(locale,myObj) + ' m²';
+                                    }
 
                                     $('#custom_base_price').val(custom_base_price);
                                     $('#custom_formated_price').val(priceElement.innerHTML);
