@@ -312,7 +312,22 @@ class ProductRepository extends Repository
                             # define the attribute we are filtering
                             $attributeQuery = $attributeQuery->where('product_attribute_values.attribute_id', $attribute->id);
 
-                            
+                            # apply the filter values to the correct column for this type of attribute.
+                            if ($attribute->type != 'price') {
+
+                                $attributeQuery->where(function ($attributeValueQuery) use ($column, $filterInputValues) {
+                                    foreach ($filterInputValues as $filterValue) {
+                                        if (! is_numeric($filterValue)) {
+                                            continue;
+                                        }
+                                        $attributeValueQuery->orWhereRaw("find_in_set(?, {$column})", [$filterValue]);
+                                    }
+                                });
+
+                            } else {
+                                $attributeQuery->where($column, '>=', core()->convertToBasePrice(current($filterInputValues)))
+                                    ->where($column, '<=', core()->convertToBasePrice(end($filterInputValues)));
+                            }
                         });
                     }
                 });
