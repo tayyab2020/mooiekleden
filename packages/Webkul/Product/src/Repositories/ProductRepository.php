@@ -191,11 +191,9 @@ class ProductRepository extends Repository
         $page = Paginator::resolveCurrentPage('page');
 
         $repository = app(ProductFlatRepository::class)->scopeQuery(function ($query) use ($params, $categoryId) {
-
             $channel = core()->getRequestedChannelCode();
 
             $locale = core()->getRequestedLocaleCode();
-
 
             $qb = $query->distinct()
                 ->select('product_flat.*')
@@ -232,8 +230,6 @@ class ProductRepository extends Repository
             if (isset($params['url_key'])) {
                 $qb->where('product_flat.url_key', 'like', '%' . urldecode($params['url_key']) . '%');
             }
-
-            
 
             # sort direction
             $orderDirection = 'asc';
@@ -276,7 +272,6 @@ class ProductRepository extends Repository
                         ->where(function ($qb) use ($priceRange, $customerGroupId) {
                             $qb->where(function ($qb) use ($priceRange) {
                                 $qb
-                                    /*->where('product_flat.size_label','!=','Custom Size')->where('product_flat.size_label','!=','Maatwerk')*/
                                     ->where('product_flat.min_price', '>=', core()->convertToBasePrice($priceRange[0]))
                                     ->where('product_flat.min_price', '<=', core()->convertToBasePrice(end($priceRange)));
                             })
@@ -331,7 +326,6 @@ class ProductRepository extends Repository
                         });
                     }
                 });
-                
 
                 # this is key! if a product has been filtered down to the same number of attributes that we filtered on,
                 # we know that it has matched all of the requested filters.
@@ -558,7 +552,7 @@ class ProductRepository extends Repository
             ->leftJoin('product_inventories as pv', 'product_flat.product_id', '=', 'pv.product_id')
             ->where(function ($qb) {
                 return $qb
-                    /* for grouped, downloadable, bundle and booking product */
+                /* for grouped, downloadable, bundle and booking product */
                     ->orWhereIn('ps.type', ['grouped', 'downloadable', 'bundle', 'booking'])
                     /* for simple and virtual product */
                     ->orWhere(function ($qb) {
@@ -738,7 +732,7 @@ class ProductRepository extends Repository
             $newValue = $oldValue->replicate();
 
             // change name of copied product
-            if ((int)$oldValue->attribute_id === $attributeIds['name']) {
+            if ($oldValue->attribute_id === $attributeIds['name']) {
                 $copyOf = trans('admin::app.copy-of');
                 $copiedName = sprintf('%s%s (%s)',
                     Str::startsWith($originalProduct->name, $copyOf) ? '' : $copyOf,
@@ -750,7 +744,7 @@ class ProductRepository extends Repository
             }
 
             // change url_key of copied product
-            if ((int)$oldValue->attribute_id === $attributeIds['url_key']) {
+            if ($oldValue->attribute_id === $attributeIds['url_key']) {
                 $copyOfSlug = trans('admin::app.copy-of-slug');
                 $copiedSlug = sprintf('%s%s-%s',
                     Str::startsWith($originalProduct->url_key, $copyOfSlug) ? '' : $copyOfSlug,
@@ -762,13 +756,13 @@ class ProductRepository extends Repository
             }
 
             // change sku of copied product
-            if ((int)$oldValue->attribute_id === $attributeIds['sku']) {
+            if ($oldValue->attribute_id === $attributeIds['sku']) {
                 $newValue->text_value = $copiedProduct->sku;
                 $newProductFlat->sku = $copiedProduct->sku;
             }
 
             // change product number
-            if ((int)$oldValue->attribute_id === $attributeIds['product_number']) {
+            if ($oldValue->attribute_id === $attributeIds['product_number']) {
                 $copyProductNumber = trans('admin::app.copy-of-slug');
                 $copiedProductNumber = sprintf('%s%s-%s',
                     Str::startsWith($originalProduct->product_number, $copyProductNumber) ? '' : $copyProductNumber,
@@ -780,7 +774,7 @@ class ProductRepository extends Repository
             }
 
             // force the copied product to be inactive so the admin can adjust it before release
-            if ((int)$oldValue->attribute_id === $attributeIds['status']) {
+            if ($oldValue->attribute_id === $attributeIds['status']) {
                 $newValue->boolean_value = 0;
                 $newProductFlat->status = 0;
             }
