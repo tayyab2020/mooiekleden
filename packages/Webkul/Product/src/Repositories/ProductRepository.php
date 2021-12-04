@@ -227,7 +227,7 @@ class ProductRepository extends Repository
                     }
 
                     $qb
-                        ->leftJoin('catalog_rule_product_prices', 'catalog_rule_product_prices.product_id', '=', 'variants.product_id')
+                        /*->leftJoin('catalog_rule_product_prices', 'catalog_rule_product_prices.product_id', '=', 'variants.product_id')*/
                         ->leftJoin('product_customer_group_prices', 'product_customer_group_prices.product_id', '=', 'variants.product_id')
                         ->where(function ($qb) use ($priceRange, $customerGroupId) {
                             $qb->where(function ($qb) use ($priceRange){
@@ -235,11 +235,11 @@ class ProductRepository extends Repository
                                     ->where('variants.min_price', '>=',  core()->convertToBasePrice($priceRange[0]))
                                     ->where('variants.min_price', '<=',  core()->convertToBasePrice(end($priceRange)));
                             })
-                            ->orWhere(function ($qb) use ($priceRange) {
+                            /*->orWhere(function ($qb) use ($priceRange) {
                                 $qb
                                     ->where('catalog_rule_product_prices.price', '>=',  core()->convertToBasePrice($priceRange[0]))
                                     ->where('catalog_rule_product_prices.price', '<=',  core()->convertToBasePrice(end($priceRange)));
-                            })
+                            })*/
                             ->orWhere(function ($qb) use ($priceRange, $customerGroupId) {
                                 $qb
                                     ->where('product_customer_group_prices.value', '>=',  core()->convertToBasePrice($priceRange[0]))
